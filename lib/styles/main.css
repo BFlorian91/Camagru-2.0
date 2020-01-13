@@ -1,0 +1,41 @@
+body {
+  color: whitesmoke !important;
+  background-color: #222831 !important;
+  height: 100vh;
+}
+
+nav footer > div{
+  background-color: #393e46 !important;
+}
+
+.font-pacifico {
+  font-family: 'Pacifico', sans-serif;
+}
+
+.font-roboto {
+  font-family: 'Roboto', sans-serif;
+}
+
+.font-poppins {
+  font-family: 'Poppins', sans-serif;
+}
+
+.blue-light {
+  background-color: #98FDD9 !important;
+}
+
+.orange-light {
+  background-color: #FFC870 !important;
+}
+
+.yellow-light {
+  background-color: #EFFC98 !important;
+}
+
+.green-light {
+  background-color: #c7f0db !important;
+}
+
+.orange-med {
+  background-color:#F68054 !important;
+}
