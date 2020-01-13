@@ -1,7 +1,11 @@
+html {
+  min-height: 100%;
+}
+
 body {
   color: whitesmoke !important;
   background-color: #222831 !important;
-  height: 100vh;
+  min-height: 100%;
 }
 
 nav footer > div{

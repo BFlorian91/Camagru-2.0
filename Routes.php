@@ -1,7 +1,7 @@
 <?php
 
     Route::set('home', function() {
-      ControllerList::CreateView('ViewList');
+      ControllerList::CreateView('ViewDisplayGallery');
     });
 
     Route::set('signin', function() {
