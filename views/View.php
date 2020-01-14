@@ -66,12 +66,10 @@ class View
 
   public function footer()
   { ?>
-      <footer class="page-footer font-small mt-4 position-absolute fixed-bottom" style="bottom: 0;">
-
+      <footer class="font-small">
         <div class="footer-copyright text-center py-2">
-          <p>©2020 Copyright: Florian Beaumont</p>
+          <p>© 2020 Copyright: Florian Beaumont</p>
         </div>
-
       </footer>
     </body>
     <?php

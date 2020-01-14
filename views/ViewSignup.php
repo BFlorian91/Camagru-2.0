@@ -4,7 +4,7 @@ class ViewSignup extends View
 {
   public function body()
   { ?>
-    <div class="container">
+    <div class="main-container">
       <form class="text-center p-5" action="#!">
 
         <p class="h4 mb-4">Sign up</p>

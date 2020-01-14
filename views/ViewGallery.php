@@ -1,10 +1,10 @@
 <?php
 
-class ViewDisplayGallery extends View
+class ViewGallery extends View
 {
   public function body()
   { ?>
-    <div class="container">
+    <div class="main-container">
         <!-- Card -->
         <div class="row mb-4 ml-1 justify-content-center">
           <?php for($i = 0; $i < 8; $i++): ?>
@@ -14,7 +14,7 @@ class ViewDisplayGallery extends View
             <a href="#!">
               <div class="mask rgba-white-slight"></div>
             </a>
-            <i class="text-danger fas fa-heart position-absolute heart-like"></i>
+            <i class="fas fa-heart position-absolute heart-like <?php echo $i % 2 == 0 ? 'text-muted' : 'text-danger';?>"></i>
             <!-- Card footer -->
             <div class="rounded-bottom bg-unique-color lighten-3 text-center pt-3 pb-1">
               <ul class="list-unstyled list-inline font-small">
