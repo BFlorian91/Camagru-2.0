@@ -23,6 +23,7 @@ class View
       <title>Camagru</title>
       <link rel="stylesheet" type="text/css" href="../lib/styles/main.css">
       <link rel="stylesheet" type="text/css" href="../lib/styles/card.css">
+      <link rel="stylesheet" type="text/css" href="../lib/styles/effects.css">
       <link href="https://fonts.googleapis.com/css?family=Roboto&display=swap" rel="stylesheet">
       <link href="https://fonts.googleapis.com/css?family=Pacifico&display=swap" rel="stylesheet">
       <link href="https://fonts.googleapis.com/css?family=Poppins&display=swap" rel="stylesheet">

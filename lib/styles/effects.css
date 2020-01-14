@@ -1,0 +1,7 @@
+i {
+  transition: transform 0.4s;
+}
+
+i:hover {
+  transform: scale(1.5);
+}

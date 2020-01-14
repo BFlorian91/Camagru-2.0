@@ -4,7 +4,7 @@ class ViewUserGallery extends View
 {
   public function body()
   { ?>
-    <div class="container" style="max-width: 1000px">
+    <div class="container container-settings">
       <div class="row justify-content-md-center">
         <div class="offset-md-1 col-xs-12 col-1">
           <img src="https://i.pravatar.cc/100" alt="avatar" class="rounded-circle mx-auto d-block">
@@ -22,7 +22,7 @@ class ViewUserGallery extends View
           <p class="text-center mt-4 mb-4">Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquid culpa a molestiae eaque voluptates incidunt neque omnis, qui porro minus temporibus aspernatur libero numquam voluptatem nihil cum animi dolores at.</p>
         </div>
         </div>
-        <hr class="bg-light mb-4" style="opacity: 0.6">grey-opacity
+        <hr class="bg-light mb-4" style="opacity: 0.6">
 
       <!-- Card -->
         <div class="row mb-4 ml-1 justify-content-center">
