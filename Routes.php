@@ -5,11 +5,19 @@
     });
 
     Route::set('signin', function() {
-      ControllerSignin::CreateView($_SESSION['userName'] != '' ? 'ViewUserGallery' : 'ViewSignin');;
+      ControllerSignin::CreateView('ViewSignin');
     });
-
+    
     Route::set('signup', function() {
       ControllerSignup::CreateView('ViewSignup');
+    });
+
+    Route::set('personal-gallery', function() {
+      ControllerSignin::CreateView('ViewUserGallery');
+    });
+
+    Route::set('personal-montage', function() {
+      ControllerSignin::CreateView('ViewMontage');
     });
 
     Route::set('not-available', function() {

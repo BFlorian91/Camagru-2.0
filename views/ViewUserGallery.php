@@ -10,30 +10,30 @@ class ViewUserGallery extends View
           <img src="https://i.pravatar.cc/100" alt="avatar" class="rounded-circle mx-auto d-block">
         </div>
         <div class="col-md-2 col-xs-12 ml-4 my-auto">
-          <h1 class="text-center"><?= $_SESSION['userName']?></h1>
+          <h1 class="text-center"><?= $_SESSION['userName'] ?></h1>
         </div>
         <div class="offset-md-4 col-md-1 col-xs-6 mt-4">
           <a href="index.php?url="><i class="text-center text-white fas fa-cog" style="font-size: 25px"></i></a>
         </div>
         <div class="col-md-1 col-xs-6 mt-4">
-          <a href="index.php?url="><i class="text-white text-center fas fa-plus" style="font-size: 25px"></i></a>
+          <a href="index.php?url=personal-montage"><i class="text-white text-center fas fa-plus" style="font-size: 25px"></i></a>
         </div>
         <div class="col-8">
-          <p class="text-center mt-4 mb-4">Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquid culpa a molestiae eaque voluptates incidunt neque omnis, qui porro minus temporibus aspernatur libero numquam voluptatem nihil cum animi dolores at.</p>
+          <p class="text-center mt-4">Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquid culpa a molestiae eaque voluptates incidunt neque omnis, qui porro minus temporibus aspernatur libero numquam voluptatem nihil cum animi dolores at.</p>
         </div>
-        </div>
-        <hr class="bg-light mb-4" style="opacity: 0.6">
+      </div>
+      <hr class="bg-light mb-4 w-50" style="opacity: 0.6">
 
       <!-- Card -->
-        <div class="row mb-4 ml-1 justify-content-center">
-          <?php for($i = 0; $i < 8; $i++): ?>
+      <div class="row mb-4 ml-1 justify-content-center">
+        <?php for ($i = 0; $i < 8; $i++) : ?>
           <!--Card image-->
           <div class="col-md-3 pl-0 pr-0 mr-4 mb-4 border border-info" style="max-width: 300px; box-shadow: 6px 6px 6px black;">
-            <img class="w-100" src="<?= "https://i.picsum.photos/id/" . ($i * 3) . "/300/300.jpg" ?>" alt="Card image cap">
+            <img class="w-100" src="<?= "https://i.picsum.photos/id/" . ($i + 3 * 24) . "/300/300.jpg" ?>" alt="Card image cap">
             <a href="#!">
               <div class="mask rgba-white-slight"></div>
             </a>
-            <i class="fas fa-heart position-absolute heart-like <?= $i % 2 == 0 ? 'text-muted' : 'text-danger';?>"></i>
+            <i class="fas fa-heart position-absolute heart-like <?= $i % 5 == 0 ? 'text-muted' : 'text-danger'; ?>"></i>
             <!-- Card footer -->
             <div class="rounded-bottom bg-unique-color lighten-3 text-center pt-3 pb-1">
               <ul class="list-unstyled list-inline font-small">
@@ -44,10 +44,10 @@ class ViewUserGallery extends View
             </div>
           </div>
         <?php endfor; ?>
-        </div>
-    </div>
       </div>
- 
+    </div>
+    </div>
+
 <?php
   }
 }
