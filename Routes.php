@@ -1,6 +1,6 @@
 <?php
 
-    Route::set('home', function() {
+    Route::set('explore', function() {
       ControllerGallery::CreateView('ViewGallery');
     });
 
@@ -12,7 +12,15 @@
       ControllerSignup::CreateView('ViewSignup');
     });
 
-    Route::set('personal-gallery', function() {
+    Route::set('logout', function() {
+      ControllerSignup::CreateView('ViewNotAvailable');
+    });
+
+    Route::set('setting', function() {
+      ControllerSignup::CreateView('ViewNotAvailable');
+    });
+
+    Route::set($_SESSION['userName'], function() {
       ControllerSignin::CreateView('ViewUserGallery');
     });
 

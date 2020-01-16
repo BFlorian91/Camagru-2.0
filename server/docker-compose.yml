@@ -14,11 +14,19 @@ services:
         container_name: fl_nginx
         image: nginx
         ports:
-            - 8080:80
+            - 80:80
+            - 443:443
         volumes:
             - ../:/app:ro
             - ./nginx/log:/var/log/nginx
             - ./nginx/config/nginx.conf:/etc/nginx/nginx.conf:rw
+            # - ./nginx/certbot/conf:/etc/letsencrypt
+            # - ./nginx/certbot/www:/var/www/certbot
+    # certbot:
+    #     image: certbot/certbot
+    #     volumes:
+    #         - ./nginx/certbot/conf:/etc/letsencrypt
+    #         - ./nginx/certbot/www:/var/www/certbot
 
     mysql:
         container_name: fl_mysql
