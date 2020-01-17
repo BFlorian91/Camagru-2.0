@@ -1,7 +1,13 @@
-i {
+.icon-effect {
   transition: transform 0.4s;
 }
 
-i:hover {
+.icon-effect:hover {
+  color: #3FAFD7 !important;
+  transform: scale(1.5);
+}
+
+#delete:hover {
+  color: rgb(163, 68, 68) !important;
   transform: scale(1.5);
 }

@@ -46,17 +46,18 @@ class View
           <a href="index.php?url=explore"><h3 class="mt-1 ml-4 font-weight-bold text-white font-pacifico">Camagru</h3></a>
         </div>
         <ul class="nav navbar-nav nav-flex-icons ml-auto">
-          <?php if(trim($_SESSION['userName']) !== ''): ?>
-          <li class="nav-item">
-            <a href="index.php?url=logout" class="nav-link"><i class="text-white fas fa-sign-out-alt"></i><span class="clearfix d-none d-sm-inline-block text-white ml-2">Logout: <?= $_SESSION['userName']; ?></span></a>
+  
+          <li class="nav-item my-auto">
+            <a href="index.php?url=explore" class="nav-link"><i class="text-white far fa-compass icon-effect" style="font-size: 20px;"></i></a>
           </li>
-          <?php endif; ?>
-          <li class="nav-item">
-            <a href="index.php?url=explore" class="nav-link"><i class="text-white fas fa-camera"></i><span class="clearfix d-none d-sm-inline-block text-white"></span></a>
+          <li class="nav-item my-auto">
+            <a href="index.php?url=<?= trim($_SESSION['userName']) !== '' ? $_SESSION['userName'] : 'signin'; ?>" class="nav-link"><i class="text-white fas fa-user icon-effect" style="font-size: 20px;"></i> <span class="clearfix d-none d-sm-inline-block text-white"></span></a>
           </li>
+          <!-- <?php if(trim($_SESSION['userName']) !== ''): ?>
           <li class="nav-item">
-            <a href="index.php?url=<?= trim($_SESSION['userName']) !== '' ? $_SESSION['userName'] : 'signin'; ?>" class="nav-link"><i class="text-white fas fa-user"></i> <span class="clearfix d-none d-sm-inline-block text-white"></span></a>
+            <a href="index.php?url=<?= trim($_SESSION['userName']) ?>" class="nav-link"><span class="clearfix d-none d-sm-inline-block text-white"><img src="https://i.pravatar.cc/50" alt="avatar" class="rounded-circle"></a>
           </li>
+          <?php endif; ?> -->
         </ul>
       </nav>
     </header>
