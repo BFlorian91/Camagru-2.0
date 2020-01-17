@@ -5,20 +5,20 @@ class ViewUserGallery extends View
   public function body()
   { ?>
     <div class="container container-settings">
-      <div class="row justify-content-md-center">
-        <div class="offset-md-1 col-xs-12 col-1">
+      <div class="row justify-content-md-center m-0">
+        <div class="col-lg-2 col-xs-12 col-sm-12 col-md-3">
           <img src="https://i.pravatar.cc/100" alt="avatar" class="rounded-circle mx-auto d-block">
         </div>
-        <div class="col-md-2 col-xs-12 ml-4 my-auto">
+        <div class="col-lg-1 col-md-3 col-sm-12 col-xs-12 my-auto text-center">
           <h1 class="text-center"><?= $_SESSION['userName'] ?></h1>
         </div>
-        <div class="offset-md-4 col-md-1 col-xs-6 mt-4">
-          <a href="index.php?url=setting"><i class="text-center text-white fas fa-cog" style="font-size: 25px"></i></a>
+        <div class="offset-md-4 col-md-1 col-sm-6 col-xs-3">
+          <a href="index.php?url=setting"><i class="text-white fas fa-cog text-center col mt-4" style="font-size: 25px"></i></a>
         </div>
-        <div class="col-md-1 col-xs-6 mt-4">
-          <a href="index.php?url=personal-montage"><i class="text-white text-center fas fa-plus" style="font-size: 25px"></i></a>
+        <div class="col-md-1 col-sm-6 col-xs-3">
+          <a href="index.php?url=personal-montage"><i class="text-white fas fa-plus text-center col mt-4" style="font-size: 25px"></i></a>
         </div>
-        <div class="col-8">
+        <div class="col-12">
           <p class="text-center mt-4">Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquid culpa a molestiae eaque voluptates incidunt neque omnis, qui porro minus temporibus aspernatur libero numquam voluptatem nihil cum animi dolores at.</p>
         </div>
       </div>
