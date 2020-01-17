@@ -14,7 +14,7 @@ services:
         container_name: fl_nginx
         image: nginx
         ports:
-            - 80:80
+            - 8080:80
             - 443:443
         volumes:
             - ../:/app:ro
