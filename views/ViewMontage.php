@@ -22,12 +22,12 @@ class ViewMontage extends View
       <h4 class="text-center font-poppins">Filters</h4>
       <div class="row justify-content-center mb-4">
         <!-- <div class="btn-group col" role="group" aria-label="Basic example"> -->
-          <button type="button" class="btn rounded mr-3"><img width="30px" src="/lib/img/filters/bender.png" alt=""></button>
-          <button type="button" class="btn rounded mr-3"><img width="30px" src="/lib/img/filters/glasses.png" alt=""></button>
-          <button type="button" class="btn rounded mr-3"><img width="30px" src="/lib/img/filters/homer.png" alt=""></button>
-          <button type="button" class="btn rounded mr-3"><img width="30px" src="/lib/img/filters/magi.png" alt=""></button>
-          <button type="button" class="btn rounded mr-3"><img width="30px" src="/lib/img/filters/marge.png" alt=""></button>
-          <button type="button" class="btn rounded mr-3"><img width="30px" src="/lib/img/filters/rick.png" alt=""></button>
+          <button type="button" class="btn rounded mr-3"><img width="30px" src="/lib/img/filters/bender.png" alt="bender"></button>
+          <button type="button" class="btn rounded mr-3"><img width="30px" src="/lib/img/filters/glasses.png" alt="glasses"></button>
+          <button type="button" class="btn rounded mr-3"><img width="30px" src="/lib/img/filters/homer.png" alt="homer"></button>
+          <button type="button" class="btn rounded mr-3"><img width="30px" src="/lib/img/filters/magi.png" alt="magi"></button>
+          <button type="button" class="btn rounded mr-3"><img width="30px" src="/lib/img/filters/marge.png" alt="marge"></button>
+          <button type="button" class="btn rounded mr-3"><img width="30px" src="/lib/img/filters/rick.png" alt="rick"></button>
         <!-- </div> -->
       </div>
           <!-- <canvas id="canvas" class="col-12"></canvas> -->
