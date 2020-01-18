@@ -54,11 +54,11 @@ class View
           <li class="nav-item my-auto">
             <a href="index.php?url=<?= trim($_SESSION['userName']) !== '' ? $_SESSION['userName'] : 'signin'; ?>" class="nav-link"><i class="text-white fas fa-user icon-effect" style="font-size: 20px;"></i> <span class="clearfix d-none d-sm-inline-block text-white"></span></a>
           </li>
-          <!-- <?php if(trim($_SESSION['userName']) !== ''): ?>
+          <?php if(trim($_SESSION['userName']) !== ''): ?>
           <li class="nav-item">
-            <a href="index.php?url=<?= trim($_SESSION['userName']) ?>" class="nav-link"><span class="clearfix d-none d-sm-inline-block text-white"><img src="https://i.pravatar.cc/50" alt="avatar" class="rounded-circle"></a>
+            <a href="index.php?url=<?= trim($_SESSION['userName']) ?>" class="nav-link"><span class="clearfix d-none d-sm-inline-block text-white"><i class="fas fa-sign-out-alt icon-effect" style="font-size: 20px;"></i></a>
           </li>
-          <?php endif; ?> -->
+          <?php endif; ?>
         </ul>
       </nav>
     </header>

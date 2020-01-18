@@ -13,7 +13,7 @@ class ViewUserGallery extends View
           <h1 class="text-center"><?= $_SESSION['userName'] ?></h1>
         </div>
         <div class="offset-md-4 col-md-1 col-sm-6 col-xs-3">
-          <a href="index.php?url=setting"><i class="text-white fas fa-cog text-center col mt-4 icon-effect" style="font-size: 25px"></i></a>
+          <a href="index.php?url=edit-account"><i class="text-white fas fa-cog text-center col mt-4 icon-effect" style="font-size: 25px"></i></a>
         </div>
         <div class="col-md-1 col-sm-6 col-xs-3">
           <a href="index.php?url=personal-montage"><i class="text-white fas fa-plus text-center col mt-4 icon-effect" style="font-size: 25px"></i></a>

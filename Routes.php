@@ -16,8 +16,8 @@
       ControllerSignup::CreateView('ViewNotAvailable');
     });
 
-    Route::set('setting', function() {
-      ControllerSignup::CreateView('ViewNotAvailable');
+    Route::set('edit-account', function() {
+      ControllerAccountEdit::CreateView('ViewAccountEdit');
     });
 
     Route::set($_SESSION['userName'], function() {
