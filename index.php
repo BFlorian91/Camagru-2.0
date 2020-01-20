@@ -1,7 +1,7 @@
 <?php
 
 // require_once 'database/DatabaseConnect.php';
-$_SESSION['userName'] = 'Jason';
+$_SESSION['userName'] = 'Florian';
 
 spl_autoload_register(function ($class_name) {
   if (file_exists('views/' . $class_name . '.php')) {
