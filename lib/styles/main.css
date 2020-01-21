@@ -10,6 +10,10 @@ body {
   position: relative;
 }
 
+button:focus {
+  outline: 0 !important;
+}
+
 .container-settings {
   max-width: 1000px;
   min-height: 100vh;
@@ -64,4 +68,8 @@ footer {
 
 .orange-med {
   background-color:#F68054 !important;
+}
+
+.main-color {
+  background-color: #233845 !important;
 }

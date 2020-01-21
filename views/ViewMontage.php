@@ -17,9 +17,9 @@ class ViewMontage extends View
         <a class="col-2" id="delete"><i class="fas fa-trash-alt text-center col" style="font-size: 35px;"></i></a>
         <a class="col-2 icon-effect" id="capture"><i class="fas fa-camera-retro text-center col" style="font-size: 35px;"></i></a>
         <a class="col-2 icon-effect" id="filter"><i class="fas fa-edit text-center col" style="font-size: 35px;"></i></a>
-        <a onclick="upload()" class="col-2 icon-effect" id=""><i class="fas fa-cloud-upload-alt text-center col" style="font-size: 35px;"></i></a>
+        <a onclick="toggleDiv('showUpload')" class="col-2 icon-effect" id=""><i class="fas fa-cloud-upload-alt text-center col" style="font-size: 35px;"></i></a>
       </div>
-      <div class="file-upload-wrapper" id="upload" style="display: none">
+      <div class="file-upload-wrapper" id="showUpload" style="display: none">
         <hr>
         <div class="row justify-content-center">
           <input type="file" id="input-file-now" class="file-upload rounded" />
@@ -41,7 +41,7 @@ class ViewMontage extends View
           <!-- <canvas id="canvas" class="col-12"></canvas> -->
     </div>
     <script src="/lib/javascript/camera.js"></script>
-    <script src="/lib/javascript/main.js"></script>
+    <script src="/lib/javascript/toggle.js"></script>
     <?php
   }
 }
