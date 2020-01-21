@@ -22,7 +22,7 @@ class ViewAccountEdit extends View
       <form action="#" onsubmit="return checkUsername()" method="post">
         <div class="md-form">
           <input type="text" id="editUsername" class="form-control rounded" placeholder="username">
-          <button type="submit" id="btnUser" class="rounded w-100 main-color" style="color:white;">Submit</button>
+          <button type="submit" id="btnUser" class="rounded w-100 main-color" style="color: white;">Submit</button>
         </div>
       </form>
       </div>

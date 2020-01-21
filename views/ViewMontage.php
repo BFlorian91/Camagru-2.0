@@ -3,21 +3,19 @@
 class ViewMontage extends View
 {
 
-  // private $_filters = array_slice(scandir('/lib/img/filters/'), 2);
-
   public function body()
   { ?>
     <div class="container container-settings">
     <h1 class="text-center font-poppins">PhotoLab</h1>
       <div class="row justify-content-center">
-          <video class="col-12" style="max-width: 640px;" id="video" autoplay="true"></video>
-          <!-- <img class="col-12" style="display: none" alt="photo" id="photo"> -->
+          <video class="col-12" style="max-width: 640px;" id="video" autoplay="true" style="display: block"></video>
+          <canvas class="col-12" style="max-width: 640px; display: none"></canvas>
       </div>
       <div class="row justify-content-center mt-4 mb-4">
-        <a class="col-2" id="delete"><i class="fas fa-trash-alt text-center col" style="font-size: 35px;"></i></a>
-        <a class="col-2 icon-effect" id="capture"><i class="fas fa-camera-retro text-center col" style="font-size: 35px;"></i></a>
-        <a class="col-2 icon-effect" id="filter"><i class="fas fa-edit text-center col" style="font-size: 35px;"></i></a>
-        <a onclick="toggleDiv('showUpload')" class="col-2 icon-effect" id=""><i class="fas fa-cloud-upload-alt text-center col" style="font-size: 35px;"></i></a>
+        <!-- <a class="col-2" id="delete"><i class="fas fa-trash-alt text-center col" style="font-size: 35px;"></i></a> -->
+        <a onclick="takeSnapshot()" class="col-6 icon-effect" id="capture"><i class="fas fa-camera-retro text-center col" style="font-size: 35px;"></i></a>
+        <!-- <a class="col-2 icon-effect" id="filter"><i class="fas fa-edit text-center col" style="font-size: 35px;"></i></a> -->
+        <a onclick="toggleDiv('showUpload')" class="col-6 icon-effect"><i class="fas fa-cloud-upload-alt text-center col" style="font-size: 35px;"></i></a>
       </div>
       <div class="file-upload-wrapper" id="showUpload" style="display: none">
         <hr>

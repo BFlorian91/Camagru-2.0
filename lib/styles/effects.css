@@ -11,3 +11,11 @@
   color: rgb(163, 68, 68) !important;
   transform: scale(1.5);
 }
+
+#fadein {
+  opacity: 1;
+  -webkit-transition: opacity 2s;
+  -moz-transition: opacity 2s;
+  -o-transition: opacity 2s;
+  transition: opacity 2s;
+}

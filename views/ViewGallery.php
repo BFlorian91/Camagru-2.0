@@ -10,7 +10,9 @@ class ViewGallery extends View
           <?php for($i = 0; $i < 8; $i++): ?>
           <!--Card image-->
           <div class="col-md-3 pl-0 pr-0 mr-4 mb-4 border border-info" style="max-width: 300px; box-shadow: 6px 6px 6px black;">
-            <img class="w-100" src="<?= "https://i.picsum.photos/id/" . ($i * 14) . "/300/300.jpg" ?>" alt="Card image cap">
+          <div class="overflow-hidden w-100">
+            <img class="w-100 thumb-zoom" src="<?= "https://i.picsum.photos/id/" . ($i * 14) . "/300/300.jpg" ?>" alt="Card image cap">
+          </div>
             <a href="#!">
               <div class="mask rgba-white-slight"></div>
             </a>

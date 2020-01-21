@@ -3,3 +3,12 @@
   top: 62%;
   left: 80%
 }
+
+.thumb-zoom {
+  transition: transform 0.3s
+}
+
+.thumb-zoom:hover {
+   transform: scale(1.2)
+}
+
