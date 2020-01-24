@@ -42,21 +42,21 @@ class View
   { ?>
     <header>
       <nav class="navbar fixed-top navbar-toggleable-md navbar-expand-lg scrolling-navbar double-nav">
-        <a href="index.php?url=explore" style="width: 40px"><img src="../lib/img/logo.png" class="img-fluid" alt="logo"></a>
+        <a href="explore" style="width: 40px"><img src="/lib/img/logo.png" class="img-fluid" alt="logo"></a>
         <div class="mr-auto">
-          <a href="index.php?url=explore"><h3 class="mt-1 ml-4 font-weight-bold text-white font-pacifico">Camagru</h3></a>
+          <a href="explore"><h3 class="mt-1 ml-4 font-weight-bold text-white font-pacifico">Camagru</h3></a>
         </div>
         <ul class="nav navbar-nav nav-flex-icons ml-auto">
   
           <li class="nav-item my-auto">
-            <a href="index.php?url=explore" class="nav-link"><i class="text-white far fa-compass icon-effect" style="font-size: 20px;"></i></a>
+            <a href="explore" class="nav-link"><i class="text-white far fa-compass icon-effect" style="font-size: 20px;"></i></a>
           </li>
           <li class="nav-item my-auto">
-            <a href="index.php?url=<?= trim($_SESSION['userName']) !== '' ? $_SESSION['userName'] : 'signin'; ?>" class="nav-link"><i class="text-white fas fa-user icon-effect" style="font-size: 20px;"></i> <span class="clearfix d-none d-sm-inline-block text-white"></span></a>
+            <a href="<?= trim($_SESSION['userName']) !== '' ? $_SESSION['userName'] : 'signin'; ?>" class="nav-link"><i class="text-white fas fa-user icon-effect" style="font-size: 20px;"></i> <span class="clearfix d-none d-sm-inline-block text-white"></span></a>
           </li>
           <?php if(trim($_SESSION['userName']) !== ''): ?>
           <li class="nav-item">
-            <a href="index.php?url=<?= trim($_SESSION['userName']) ?>" class="nav-link"><span class="clearfix d-none d-sm-inline-block text-white"><i class="fas fa-sign-out-alt icon-effect" style="font-size: 20px;"></i></a>
+            <a href="<?= trim($_SESSION['userName']) ?>" class="nav-link"><span class="clearfix d-none d-sm-inline-block text-white"><i class="fas fa-sign-out-alt icon-effect" style="font-size: 20px;"></i></a>
           </li>
           <?php endif; ?>
         </ul>
