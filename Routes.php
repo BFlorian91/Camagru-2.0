@@ -31,3 +31,7 @@
     Route::set('not-available', function() {
       ControllerNotAvailable::CreateView('ViewNotAvailable');
     });
+
+    Route::set('setup', function() {
+      ControllerSetup::CreateView('ViewInstall');
+    });
