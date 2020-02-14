@@ -5,15 +5,15 @@ class ViewSignin extends View
   public function body()
   { ?>
     <div class="container container-settings">
-      <form class="text-center p-5" action="#!">
+      <form class="text-center p-5" method="POST">
 
         <p class="h4 mb-4">Sign in</p>
 
         <!-- Email -->
-        <input type="email" id="defaultLoginFormEmail" class="form-control mb-4" placeholder="E-mail">
+        <input name="email" type="email" id="defaultLoginFormEmail" class="form-control mb-4" placeholder="E-mail">
 
         <!-- Password -->
-        <input type="password" id="defaultLoginFormPassword" class="form-control mb-4" placeholder="Password">
+        <input name="password" type="password" id="defaultLoginFormPassword" class="form-control mb-4" placeholder="Password">
 
         <div class="d-flex justify-content-between">
           <div>

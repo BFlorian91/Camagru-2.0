@@ -1,10 +1,11 @@
 <?php
 
-// require_once 'database/DatabaseConnect.php';
 require_once 'lib/Tools.php';
 require_once 'config/database.php';
 
-$_SESSION['userName'] = 'Florian';
+// TEST //
+  $_SESSION['userName'] = '';
+//////////
 
 spl_autoload_register(function ($class_name) {
   if (file_exists('views/' . $class_name . '.php')) {
@@ -16,10 +17,4 @@ spl_autoload_register(function ($class_name) {
   }
 });
 
-// if ($GET['url'] == 'setup') {
-//   require_once 'config/setup.php';
-// }
-// $db = new DatabaseConnect();
-// $db->connectToDb();
-// $db->showInfo();
 require_once 'Routes.php';
