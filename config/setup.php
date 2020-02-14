@@ -1,14 +1,17 @@
 <?php
 
   $message = new Tools();
+  $dbName = getenv("DB_NAME");
+  $port = getenv("DB_PORT");
+  $user = getenv("DB_USER");
+  $password = getenv("DB_PASSWORD");
 
   // CREATE DATABASE 
-
   try {
-    $db = new PDO('mysql:host=fl_mysql;port:8081', 'root', 'r@@t123X');
+    $db = new PDO('mysql:host=fl_mysql;port:' . $port, $user, $password);
     $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-    $db->exec("DROP DATABASE IF EXISTS camagru");
-    $db->exec("CREATE DATABASE camagru");
+    $db->exec("DROP DATABASE IF EXISTS " . $dbName);
+    $db->exec("CREATE DATABASE " . $dbName);
     echo $message->success("Database is installed!");
 
   } catch(PDOException $e) {
@@ -18,7 +21,7 @@
 
   // CREATE USERS TABLES 
   try {
-    $db->exec("USE camagru");
+    $db->exec("USE " . $dbName);
     $db->exec("CREATE TABLE `users` (
       `id` INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
       `username` VARCHAR(50) NOT NULL,
