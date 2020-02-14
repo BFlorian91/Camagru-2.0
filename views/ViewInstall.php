@@ -6,8 +6,8 @@
   {
     public function body()
     { ?>
-    <div class="full-height">
-    </div>
-      <?php
+      <div class="full-height">
+      </div>
+    <?php
     }
   }
