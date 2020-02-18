@@ -9,6 +9,12 @@ class Controller
     $view->build_page();
   }
 
+  public static function CreateAction($actionName)
+  {
+    $action = new $actionName();
+    $action->start();
+  }
+
   // public static function routes()
   // {
   //   $page = isset($_GET["page"]) ? $_GET["page"] : null;
