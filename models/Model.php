@@ -17,7 +17,6 @@
 
     public function connect()
     {
-      // var_dump($this->_port, $this->_user, $this->_pass);
       try {
         $db = new PDO('mysql:host=fl_mysql;port:' . $this->_port, $this->_user, $this->_pass);
         $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
@@ -27,4 +26,40 @@
         die(-1);
       }
     }
-  }
+
+    public function checkIfUserExist($username, $db)
+    {
+      $stmt = $db->prepare("SELECT `username` FROM `users` WHERE username='$username'");
+      $stmt->execute();
+
+      if($stmt->rowCount() > 0){
+        return false;
+      } else {
+        return true;
+      }
+    }
+
+    public function checkIfMailExist($mail, $db)
+    {
+      $stmt = $db->prepare("SELECT `mail` FROM `users` WHERE `mail`='$mail'");
+      $stmt->execute();
+
+      if($stmt->rowCount() > 0){
+        return false;
+      } else {
+        return true;
+      }
+    }
+
+    public function checkPassword($password)
+    {
+      if (preg_match('/[A-Z]/', $password)) {
+        if (preg_match('/[0-9]/', $password)) {
+          return 1;
+        }
+        return -1;
+      } else {
+        return 0;
+      }
+    }
+}

@@ -21,7 +21,7 @@ class ViewAccountEdit extends View
       <hr class="blue-light">
       <form action="#" onsubmit="return checkUsername()" method="post">
         <div class="md-form">
-          <input type="text" id="editUsername" class="form-control rounded" placeholder="username">
+          <input name="editUsername" type="text" id="editUsername" class="form-control rounded" placeholder="username">
           <button type="submit" id="btnUser" class="rounded w-100 main-color" style="color: white;">Submit</button>
         </div>
       </form>
@@ -30,15 +30,15 @@ class ViewAccountEdit extends View
       <!-- password -->
       <div class="mb-4 mt-4" id="editPass" style="display:none">
         <hr class="blue-light">
-        <form action="#" onsubmit="return checkPassword()" method="post">
+        <form onsubmit="return checkPassword()" method="post">
           <div class="md-form">
-            <input type="password" id="oldPassword" class="form-control rounded" placeholder="old password">
+            <input name="oldPassword" type="password" id="oldPassword" class="form-control rounded" placeholder="old password">
           </div>
           <div class="md-form">
-            <input type="password" id="newPassword" class="form-control rounded" placeholder="new password">
+            <input name="newPassword" type="password" id="newPassword" class="form-control rounded" placeholder="new password">
           </div>
           <div class="md-form">
-            <input type="password" id="confirmPassword" class="form-control rounded" placeholder="confirm password">
+            <input name="confirmPassword" type="password" id="confirmPassword" class="form-control rounded" placeholder="confirm password">
           </div>
           <button type="submit" id="btnPass" class="rounded w-100 main-color" style="color: white;">Submit</button>
         </form>
@@ -47,9 +47,9 @@ class ViewAccountEdit extends View
       <!-- email -->
       <div class="mb-4" id="editMail" style="display: none;">
         <hr class="blue-light">
-        <form action="#" method="post">
+        <form method="post">
           <div class="md-form">
-            <input type="email" id="editEmail" class="form-control" placeholder="email">
+            <input name="editEmail" type="email" id="editEmail" class="form-control" placeholder="email">
             <button type="submit" class="rounded w-100 main-color text-white">Submit</button>
           </div>
         </form>

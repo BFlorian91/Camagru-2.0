@@ -5,7 +5,7 @@ class ViewSignup extends View
   public function body()
   { ?>
     <div class="container container-settings">
-      <form class="text-center p-5" action="#!" method="POST">
+      <form class="text-center p-5" method="POST">
 
         <p class="h4 mb-4">Sign up</p>
 

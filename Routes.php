@@ -17,7 +17,10 @@
     });
 
     Route::set('edit-account', function() {
-      ControllerAccountEdit::CreateView();
+      if (trim($_SESSION['token'])) {
+        ControllerAccountEdit::CreateView();
+      }
+      ControllerGallery::CreateView();
     });
 
     Route::set($_SESSION['token'], function() {
@@ -29,7 +32,11 @@
     });
 
     Route::set('personal-montage', function() {
-      ControllerMontage::CreateView();
+      if (trim($_SESSION['token'])) {
+        ControllerMontage::CreateView();
+      } else {
+        ControllerGallery::CreateView();
+      }
     });
 
     Route::set('not-available', function() {

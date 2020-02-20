@@ -8,7 +8,7 @@
     {
       parent::__construct();
       $this->_db = $this->connect();
-      $this->_db - $this->_db->exec("USE " . getenv("DB_NAME"));
+      $this->_db->exec("USE " . getenv("DB_NAME"));
     }
 
     public function signin($username, $pass)
