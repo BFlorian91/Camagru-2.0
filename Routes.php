@@ -29,7 +29,7 @@
     });
 
     Route::set('personal-montage', function() {
-      ControllerSignin::CreateView();
+      ControllerMontage::CreateView();
     });
 
     Route::set('not-available', function() {
