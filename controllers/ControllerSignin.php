@@ -10,7 +10,9 @@
       if (isset($_POST['username']) && isset($_POST['password'])) {
         $username = htmlspecialchars($_POST['username']);
         $password = htmlspecialchars($_POST['password']);
-        $action->signin($username, $password);
+        if ($action->signin($username, $password)) {
+          $view = new ViewGallery();
+        }
       }
       $view->build_page();
     }

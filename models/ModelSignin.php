@@ -18,7 +18,6 @@
       while ($datas = $response->fetch()) {
         if ($datas['username'] == $username && $datas['password'] == $password) {
           $_SESSION['token'] = $datas['token'];
-          $this->message->success($_SESSION['token']);
           return true;
         }
       }
