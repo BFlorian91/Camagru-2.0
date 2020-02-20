@@ -52,11 +52,11 @@ class View
             <a href="explore" class="nav-link"><i class="text-white far fa-compass icon-effect" style="font-size: 20px;"></i></a>
           </li>
           <li class="nav-item my-auto">
-            <a href="<?= trim($_SESSION['userName']) !== '' ? $_SESSION['userName'] : 'signin'; ?>" class="nav-link"><i class="text-white fas fa-user icon-effect" style="font-size: 20px;"></i> <span class="clearfix d-none d-sm-inline-block text-white"></span></a>
+            <a href="<?= trim($_SESSION['token']) !== '' ? $_SESSION['token'] : 'signin'; ?>" class="nav-link"><i class="text-white fas fa-user icon-effect" style="font-size: 20px;"></i> <span class="clearfix d-none d-sm-inline-block text-white"></span></a>
           </li>
-          <?php if(trim($_SESSION['userName']) !== ''): ?>
+          <?php if(trim($_SESSION['token']) !== ''): ?>
           <li class="nav-item">
-            <a href="<?= trim($_SESSION['userName']) ?>" class="nav-link"><span class="clearfix d-none d-sm-inline-block text-white"><i class="fas fa-sign-out-alt icon-effect" style="font-size: 20px;"></i></a>
+            <a href="logout" class="nav-link"><span class="clearfix d-none d-sm-inline-block text-white"><i class="fas fa-sign-out-alt icon-effect" style="font-size: 20px;"></i></a>
           </li>
           <?php endif; ?>
         </ul>

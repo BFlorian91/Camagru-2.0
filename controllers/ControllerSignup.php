@@ -2,13 +2,7 @@
 
   class ControllerSignup extends Controller
   {
-    private $_action;
     public $db;
-
-    public function __construct()
-    {
-
-    }
 
     public static function CreateView()
     {

@@ -9,8 +9,8 @@ class ViewSignin extends View
 
         <p class="h4 mb-4">Sign in</p>
 
-        <!-- Email -->
-        <input name="email" type="email" id="defaultLoginFormEmail" class="form-control mb-4" placeholder="E-mail">
+        <!-- Username -->
+        <input name="username" type="text" id="defaultLoginFormEmail" class="form-control mb-4" placeholder="Username">
 
         <!-- Password -->
         <input name="password" type="password" id="defaultLoginFormPassword" class="form-control mb-4" placeholder="Password">
@@ -36,15 +36,6 @@ class ViewSignin extends View
         <p>Not a member?
           <a href="index.php?url=signup">Register</a>
         </p>
-
-        <!-- Social login -->
-        <p>or sign in with:</p>
-
-        <a href="index.php?url=not-available" class="mx-2" role="button"><i class="fab fa-facebook-f light-blue-text"></i></a>
-        <a href="index.php?url=not-available" class="mx-2" role="button"><i class="fab fa-twitter light-blue-text"></i></a>
-        <a href="index.php?url=not-available" class="mx-2" role="button"><i class="fab fa-linkedin-in light-blue-text"></i></a>
-        <a href="index.php?url=not-available" class="mx-2" role="button"><i class="fab fa-github light-blue-text"></i></a>
-
       </form>
     </div>
 <?php

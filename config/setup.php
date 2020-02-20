@@ -83,9 +83,10 @@
   }
 
   try {
+    $password = hash("sha512", 'root');
     $db->exec("INSERT INTO users (`username`, `mail`, `password`, `token`, `verified`)
       VALUES
-      ('admin', 'florianbeaumont412@gmail.com', 'root', '1', '1')
+      ('admin', 'florianbeaumont412@gmail.com','$password', '1', '1')
     ");
   } catch(PDOException $e) {
     echo $message->error($e->getMessage());

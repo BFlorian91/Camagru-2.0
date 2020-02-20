@@ -1,11 +1,10 @@
 <?php
 
+session_start();
+
 require_once 'lib/Tools.php';
 require_once 'config/database.php';
 
-// TEST //
-  $_SESSION['userName'] = '';
-//////////
 
 spl_autoload_register(function ($class_name) {
   if (file_exists('views/' . $class_name . '.php')) {

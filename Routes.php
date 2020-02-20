@@ -13,15 +13,19 @@
     });
 
     Route::set('logout', function() {
-      ControllerSignup::CreateView();
+      ControllerLogout::CreateView();
     });
 
     Route::set('edit-account', function() {
       ControllerAccountEdit::CreateView();
     });
 
-    Route::set($_SESSION['userName'], function() {
-      ControllerSignin::CreateView();
+    Route::set($_SESSION['token'], function() {
+      if (trim($_SESSION['token'])) {
+        ControllerUserGallery::CreateView();
+      } else {
+        ControllerSignin::CreateView();
+      }
     });
 
     Route::set('personal-montage', function() {
