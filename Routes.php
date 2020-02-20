@@ -5,33 +5,33 @@
     });
 
     Route::set('signin', function() {
-      ControllerSignin::CreateView('ViewSignin');
+      ControllerSignin::CreateView();
     });
     
     Route::set('signup', function() {
-      ControllerSignup::CreateView('ViewSignup');
+      ControllerSignup::CreateView();
     });
 
     Route::set('logout', function() {
-      ControllerSignup::CreateView('ViewNotAvailable');
+      ControllerSignup::CreateView();
     });
 
     Route::set('edit-account', function() {
-      ControllerAccountEdit::CreateView('ViewAccountEdit');
+      ControllerAccountEdit::CreateView();
     });
 
     Route::set($_SESSION['userName'], function() {
-      ControllerSignin::CreateView('ViewUserGallery');
+      ControllerSignin::CreateView();
     });
 
     Route::set('personal-montage', function() {
-      ControllerSignin::CreateView('ViewMontage');
+      ControllerSignin::CreateView();
     });
 
     Route::set('not-available', function() {
-      ControllerNotAvailable::CreateView('ViewNotAvailable');
+      ControllerNotAvailable::CreateView();
     });
 
     Route::set('setup', function() {
-      ControllerSetup::CreateView('ViewInstall');
+      ControllerSetup::CreateView();
     });
