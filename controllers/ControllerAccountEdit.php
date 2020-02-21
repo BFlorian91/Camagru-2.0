@@ -15,6 +15,11 @@
         $editEmail = htmlspecialchars($_POST['editEmail']);
         $action->editEmail($editEmail);
       }
+      if (isset($_POST['newPassword']) && isset($_POST['confirmPassword'])) {
+        $newPassword = htmlspecialchars($_POST['newPassword']);
+        $confirmPassword = htmlspecialchars($_POST['confirmPassword']);
+        $action->editPassword($newPassword, $confirmPassword);
+      }
       $view->build_page();
     }
   }

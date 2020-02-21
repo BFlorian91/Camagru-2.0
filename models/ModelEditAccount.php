@@ -16,7 +16,7 @@
         return $this->message->error("Username missing or already exist, please choose another one");
       }
       
-      $newToken = hash("sha384", $newUsername);
+      $newToken = hash("sha512", $newUsername);
       $response = $this->_db->query("SELECT `username`, `token`, `id` FROM users");
       while ($datas = $response->fetch()) {
         if ($datas['token'] == $_SESSION['token']) {
@@ -24,15 +24,32 @@
 
           $stmt = $this->_db->prepare("UPDATE `users` SET `username`=?, `token`=? WHERE `id`=?");
           $stmt->execute([$newUsername, $newToken, $id]);
+          $_SESSION['token'] = $newToken;
 
           return true;
         }
       }
     }
 
-    public function editPassword()
+    public function editPassword($newPassword, $confirmPassword)
     {
+      if (!isset($newPassword) && !isset($confirmPassword)) {
+        return $this->message->error("Password missing");
+      } else if ($newPassword != $confirmPassword || $this->checkPassword($newPassword) < 1) {
+        return $this->message->error("New password and confirm password must be the same and contain at least 1 uppercase, 1 digit and 8+ characters");
+      }
 
+      $response = $this->_db->query("SELECT `password`, `token`, `id` FROM users");
+      while ($datas = $response->fetch()) {
+        if ($datas['token'] == $_SESSION['token']) {
+          $id = $datas['id'];
+
+          $stmt = $this->_db->prepare("UPDATE `users` SET `password`=? WHERE `id`=?");
+          $stmt->execute([hash("sha512", $newPassword), $id]);
+
+          return true;
+        }
+      }
     }
 
     public function editEmail($newEmail)
