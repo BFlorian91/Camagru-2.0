@@ -15,16 +15,16 @@ class ViewMontage extends View
         <a onclick="takeSnapshot()" class="col-3 icon-effect" id="takeSnap"><i class="fas fa-camera-retro text-center col" style="font-size: 35px;"></i></a>
         <a onclick="reloadCamera()" class="col-3 icon-effect" id="reload" style="display: none;"><i class="fas fa-sync-alt text-center col" style="font-size: 35px;"></i></a>
         <a class="col-3 icon-effect" id="save" style="display: none;"><i class="fas fa-save text-center col" style="font-size: 35px;"></i></a>
-        <a onclick="toggleDiv('showUpload')" class="col-3 icon-effect"><i class="fas fa-cloud-upload-alt text-center col" style="font-size: 35px;"></i></a>
-      </div>
-      <div class="row justify-content-center">
-        <a onclick="reloadCamera()" class="col-2" style="display: none;" id="delete"><i class="fas fa-trash-alt text-center col" style="font-size: 35px;"></i></a>
+        <a onclick="toggleDiv('showUpload')" id="uploader" class="col-3 icon-effect"><i class="fas fa-cloud-upload-alt text-center col" style="font-size: 35px;"></i></a>
+        <a onclick="reloadCamera()" class="col-3" style="display: none;" id="delete"><i class="fas fa-trash-alt text-center col" style="font-size: 35px;"></i></a>
       </div>
       <div class="file-upload-wrapper" id="showUpload" style="display: none">
         <hr>
         <div class="row justify-content-center">
-          <input type="file" id="input-file-now" class="file-upload rounded" />
-          <input type="submit" class="rounded">
+          <form method="post" enctype="multipart/form-data">
+            <input type="file" name="photoUpload" id="input-file-now" class="file-upload rounded" />
+            <input type="submit" class="rounded">
+          </form>
         </div>
       </div>
       <hr >
