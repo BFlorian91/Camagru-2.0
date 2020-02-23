@@ -269,3 +269,4 @@
 2020/02/12 11:20:01 [error] 6#6: *260 open() "/app/js/codemirror/addon/lint/sql-lint.js?v=5.0.0" failed (2: No such file or directory), client: 192.168.99.1, server: localhost, request: "GET /js/codemirror/addon/lint/sql-lint.js?v=5.0.0 HTTP/1.0", host: "localhost"
 2020/02/12 11:20:01 [error] 6#6: *261 open() "/app/js/console.js?v=5.0.0" failed (2: No such file or directory), client: 192.168.99.1, server: localhost, request: "GET /js/console.js?v=5.0.0 HTTP/1.0", host: "localhost"
 2020/02/12 11:20:01 [error] 6#6: *262 open() "/app/themes/dot.gif" failed (2: No such file or directory), client: 192.168.99.1, server: localhost, request: "GET /themes/dot.gif HTTP/1.0", host: "localhost"
+2020/02/21 17:12:00 [emerg] 1#1: host not found in upstream "fl_php" in /etc/nginx/nginx.conf:51

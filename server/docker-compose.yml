@@ -3,15 +3,18 @@ services:
 
     php:
         container_name: fl_php
-        # image: php:fpm
         build:
             context: ./php
             dockerfile: Dockerfile-php-fpm
+        # links:
+        #     - maildev:maildev #edit here <------|
         env_file:
             - .env
         volumes:
             - ./php/config/php.ini:/usr/local/etc/php/php.ini:rw
             - ../:/script:ro
+            # - ./php7fpm/sendmail.mc:/usr/share/sendmail/cf/debian/sendmail.mc
+            # - ./php7fpm/gmail-auth.db:/etc/mail/authinfo/gmail-auth.db
 
     nginx:
         container_name: fl_nginx
@@ -56,6 +59,7 @@ services:
             # - PMA_HOST=${DB_HOST}
 
     maildev:
+        container_name: fl_mail
         image: djfarrelly/maildev
         ports:
             - ${MAILDEV_PORT}:80

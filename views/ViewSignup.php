@@ -25,12 +25,6 @@ class ViewSignup extends View
           At least 8 characters and 1 digit
         </small>
 
-        <!-- Newsletter -->
-        <div class="custom-control custom-checkbox">
-          <input type="checkbox" name="newsletter" class="custom-control-input" id="defaultRegisterFormNewsletter">
-          <label class="custom-control-label" for="defaultRegisterFormNewsletter">Subscribe to our newsletter</label>
-        </div>
-
         <!-- Sign up button -->
         <button class="btn btn-info my-4 btn-block" type="submit">Sign in</button>
 

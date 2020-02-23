@@ -7,13 +7,16 @@ class ViewAccountEdit extends View
   { ?>
     <div class="container container-settings">
       <div class="row justify-content-center mb-4">
-        <button class="rounded font-poppins main-color text-white w-25" onclick="toggleDiv('editName')">Edit Profile</button>
+        <button class="col-6 col-md-3 rounded font-poppins main-color text-white" onclick="toggleDiv('editName')">Edit Profile</button>
       </div>
       <div class="row justify-content-center mb-4">
-        <button class="rounded font-poppins main-color text-white w-25" onclick="toggleDiv('editPass')">Edit Password</button>
+        <button class="col-6 col-md-3 rounded font-poppins main-color text-white w-25" onclick="toggleDiv('editPass')">Edit Password</button>
       </div>
       <div class="row justify-content-center mb-4">
-        <button class="rounded font-poppins main-color text-white w-25" onclick="toggleDiv('editMail')">Edit Email</button>
+        <button class="col-6 col-md-3 rounded font-poppins main-color text-white w-25" onclick="toggleDiv('editMail')">Edit Email</button>
+      </div>
+      <div class="row justify-content-center mb-4">
+        <button class="col-6 col-md-3 rounded font-poppins w-25 main-color text-white" onclick="toggleDiv('mailNotif')">Mail notification</button>
       </div>
 
       <!-- username -->
@@ -51,6 +54,26 @@ class ViewAccountEdit extends View
           <div class="md-form">
             <input name="editEmail" type="email" id="editEmail" class="form-control" placeholder="email">
             <button type="submit" class="rounded w-100 main-color text-white">Submit</button>
+          </div>
+        </form>
+      </div>
+
+      <!-- mailNotification -->
+      <div class="mb-4" id="mailNotif" style="display: none;">
+      <?php
+        $notif = new ModelEditAccount();
+        $notif->checkStatusMailNotification();
+      ?>
+        <hr class="blue-light">
+        <form method="post">
+          <div class="custom-control custom-switch">
+            <div class=" row justify-content-center">
+              <input name="toggle" value="1" type="checkbox" class="custom-control-input" id="customSwitches" <?= $_SESSION['mailNotif'] == 1 ? 'checked' : ''?>>
+              <label class="custom-control-label mb-4" for="customSwitches">Mail notification</label> 
+            </div>
+            <div class="row col">
+              <button name="mailNotifSub" type="submit" class="rounded w-100 main-color text-white">Submit</button>
+            </div>
           </div>
         </form>
       </div>

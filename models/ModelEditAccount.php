@@ -70,4 +70,31 @@
         }
       }
     }
+
+    public function mailNotif($status) 
+    {
+      $response = $this->_db->query("SELECT `token`, `id` FROM `users`");
+      while ($datas = $response->fetch()) {
+        if ($datas['token'] == $_SESSION['token']) {
+          $id = $datas['id'];
+          $stmt = $this->_db->prepare("UPDATE users SET `mailNotif`=? WHERE `id`=?");
+          $stmt->execute([$status, $id]);
+        }
+      }
+    }
+
+    public function checkStatusMailNotification()
+    {
+      $response = $this->_db->query("SELECT `token`, `mailNotif` FROM `users`");
+      while ($datas = $response->fetch()) {
+        if ($datas['token'] == $_SESSION['token']) {
+          if ($datas['mailNotif'] == 1) {
+            $_SESSION['mailNotif'] = 1;
+          } else if ($datas['mailNotif'] == 2) {
+            $_SESSION['mailNotif'] = 2;
+          }
+        }
+      }
+
+    }
   }

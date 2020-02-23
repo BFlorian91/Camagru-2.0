@@ -20,6 +20,14 @@
         $confirmPassword = htmlspecialchars($_POST['confirmPassword']);
         $action->editPassword($newPassword, $confirmPassword);
       }
+      if (isset($_POST['mailNotifSub'])) {
+        if (!isset($_POST['toggle'])) {
+          $status = '2';
+        } else if (isset($_POST['toggle'])) {
+          $status = '1';
+        }
+        $action->mailNotif($status);
+      }
       $view->build_page();
     }
   }
