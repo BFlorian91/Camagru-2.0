@@ -1,4 +1,5 @@
 version: '3'
+
 services:
 
     php:
@@ -6,15 +7,11 @@ services:
         build:
             context: ./php
             dockerfile: Dockerfile-php-fpm
-        # links:
-        #     - maildev:maildev #edit here <------|
         env_file:
             - .env
         volumes:
             - ./php/config/php.ini:/usr/local/etc/php/php.ini:rw
             - ../:/script:ro
-            # - ./php7fpm/sendmail.mc:/usr/share/sendmail/cf/debian/sendmail.mc
-            # - ./php7fpm/gmail-auth.db:/etc/mail/authinfo/gmail-auth.db
 
     nginx:
         container_name: fl_nginx
@@ -43,7 +40,6 @@ services:
             - ../.env
         environment:
             - MYSQL_ROOT_PASSWORD=${DB_PASSWORD}
-            # - MYSQL_DATABASE=${DB_NAME}
         volumes:
             - ./mysql/custom.cnf:/etc/mysql/conf.d/custom.cnf
 
@@ -55,8 +51,6 @@ services:
             - 8082:80
         links:
             - mysql:db
-        # environment:
-            # - PMA_HOST=${DB_HOST}
 
     maildev:
         container_name: fl_mail
