@@ -5,10 +5,10 @@
     public function CreateView()
     {
       $view = new ViewMontage();
-      $action = new modelMontage();
+      $action = new ModelMontage();
 
-      if (isset($_FILES['photoUpload'])) {
-        $action->uploadImage($_FILES['photoUpload']);
+      if (isset($_FILES['imageUpload'])) {
+        $action->uploadImage($_FILES['imageUpload']);
       }
       $view->build_page();
     }

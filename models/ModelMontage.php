@@ -10,15 +10,25 @@
       $this->_db->exec("USE " . getenv("DB_NAME"));
     }
 
-    public function uploadImage($file)
+    public function uploadImage($image)
     {
-      if (empty($file['name'])) {
+      if (empty($image['name'])) {
         return $this->message->error("No file chosen");
       }
-      $name = explode(".", $file['name']);
-      $extensions = ['jpg', 'jpeg', 'png'];
-      $weight = 3072;
-      
-      var_dump($file['name']);
+      $imageExt = strtolower(end(explode('.', $image['name'])));
+      $imageSize = $image['size'];
+      $imageTmp = $image['tmp_name'];
+
+      $imageExtAuth = ['jpg', 'jpeg', 'png'];
+
+      if ($imageSize > 2097152) {
+        return $this->message->error("This image is too large, file size must be 2MB or less");
+      }
+      if (in_array($imageExt, $imageExtAuth) === false) {
+        return $this->message->error("Bad image format, only 'jpg' 'jpeg' and 'png' is accepted");
+      }
+      // echo $imageTmp . "</br>";
+      // echo sys_get_temp_dir();
+      move_uploaded_file($imageTmp, "/uploads/" . $_SESSION['username'] . "_" . date("Y-m-d_H:i:s") . "." . $imageExt);
     }
   }

@@ -1,5 +1,7 @@
 <?php
 
+// ini_set('session.save_path',getcwd());
+// ini_set('session.save_path', '/server/session');
 session_start();
 
 require_once 'lib/Tools.php';

@@ -19,8 +19,8 @@ class ViewSignin extends View
           <div>
             <!-- Remember me -->
             <div class="custom-control custom-checkbox">
-              <input type="checkbox" class="custom-control-input" id="defaultLoginFormRemember">
-              <label class="custom-control-label" for="defaultLoginFormRemember">Remember me</label>
+              <!-- <input type="checkbox" class="custom-control-input" id="defaultLoginFormRemember">
+              <label class="custom-control-label" for="defaultLoginFormRemember">Remember me</label> -->
             </div>
           </div>
           <div>
@@ -34,7 +34,7 @@ class ViewSignin extends View
 
         <!-- Register -->
         <p>Not a member?
-          <a href="index.php?url=signup">Register</a>
+          <a href="signup">Register</a>
         </p>
       </form>
     </div>

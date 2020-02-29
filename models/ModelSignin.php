@@ -17,7 +17,9 @@
       $response = $this->_db->query("SELECT `username`, `password`, `token` FROM users");
       while ($datas = $response->fetch()) {
         if ($datas['username'] == $username && $datas['password'] == $password) {
+          session_start();
           $_SESSION['token'] = $datas['token'];
+          $_SESSION['username'] = $datas['username'];
           return true;
         }
       }

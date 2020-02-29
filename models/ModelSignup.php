@@ -24,7 +24,7 @@
         $stmt->bindParam(":passwd", hash("sha512", $password));
         $stmt->bindParam(":token", hash("sha512", $username));
         $stmt->execute();
-        $_SESSION['token'] = hash("sha384", $username);
+        $_SESSION['token'] = hash("sha512", $username);
       } else {
         return $this->message->error("Username or Email already taken");
       }
