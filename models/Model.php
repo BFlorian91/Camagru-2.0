@@ -14,6 +14,7 @@
       try {
         $db = new PDO('mysql:host=localhost;port:8889', 'root', 'root');
         $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+        $db->exec("USE " . DB_NAME);
         return $db;
       } catch(PDOException $e) {
         echo $this->message->error($e->getMessage());

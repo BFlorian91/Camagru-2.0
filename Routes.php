@@ -1,7 +1,7 @@
 <?php
 
     Route::set('explore', function() {
-      ControllerGallery::CreateView('ViewGallery');
+      ControllerGallery::CreateView();
     });
 
     Route::set('signin', function() {
@@ -45,4 +45,11 @@
 
     Route::set('setup', function() {
       ControllerSetup::CreateView();
+    });
+
+
+    // ----- fetch ----- //
+
+    Route::set('getAllImg', function() {
+      ControllerGallery::getAllImg();
     });
