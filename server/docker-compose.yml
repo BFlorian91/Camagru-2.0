@@ -23,6 +23,7 @@ services:
             - ../:/app:ro
             - ./nginx/log:/var/log/nginx
             - ./nginx/config/nginx.conf:/etc/nginx/nginx.conf:rw
+            # - ./nginx/config/test/:/etc/nginx/conf.d
     #         - ./nginx/certbot/conf:/etc/letsencrypt
     #         - ./nginx/certbot/www:/var/www/certbot
     # certbot:
@@ -43,7 +44,9 @@ services:
         volumes:
             - ./mysql/custom.cnf:/etc/mysql/conf.d/custom.cnf
 
+
     phpmyadmin:
+        container_name: fl_phpmyadmin
         env_file:
             - ./.env
         image: phpmyadmin/phpmyadmin
