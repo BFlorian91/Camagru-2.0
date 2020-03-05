@@ -7,7 +7,6 @@ session_start();
 require_once 'lib/Tools.php';
 require_once 'config/database.php';
 
-
 spl_autoload_register(function ($class_name) {
   if (file_exists('views/' . $class_name . '.php')) {
     require_once 'views/' . $class_name . '.php';

@@ -7,7 +7,7 @@
     {
       parent::__construct();
       $this->_db = $this->connect();
-      $this->_db->exec("USE " . getenv("DB_NAME"));
+      $this->_db->exec("USE " . DB_NAME);
     }
 
     public function editUsername($newUsername)

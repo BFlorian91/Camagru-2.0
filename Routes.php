@@ -23,7 +23,7 @@
       ControllerGallery::CreateView();
     });
 
-    Route::set($_SESSION['token'], function() {
+    Route::set('user', function() {
       if (trim($_SESSION['token'])) {
         ControllerUserGallery::CreateView();
       } else {

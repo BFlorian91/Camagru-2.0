@@ -9,12 +9,22 @@ class ViewMontage extends View
     <h1 class="text-center font-poppins">PhotoLab</h1>
       <div class="row justify-content-center">
           <video class="col-12" style="max-width: 640px; display: block" id="video" autoplay="true"></video>
-          <canvas class="col-12" style="max-width: 640px; max-height: 480px; display: none"></canvas>
+          <canvas class="col-12" style="max-width: 640px; max-height: 480px; display: none" id="canvas"></canvas>
       </div>
+      <div class="output">
+        <img alt="photo" id="photo">
+      </div>
+
       <div class="row justify-content-center mt-4 mb-4">
         <a onclick="takeSnapshot()" class="col-3 icon-effect" id="takeSnap"><i class="fas fa-camera-retro text-center col" style="font-size: 35px;"></i></a>
         <a onclick="reloadCamera()" class="col-3 icon-effect" id="reload" style="display: none;"><i class="fas fa-sync-alt text-center col" style="font-size: 35px;"></i></a>
-        <a class="col-3 icon-effect" id="save" style="display: none;"><i class="fas fa-save text-center col" style="font-size: 35px;"></i></a>
+        <!-- <a class="col-3 icon-effect" id="save" style="display: none;"><i class="fas fa-save text-center col" style="font-size: 35px;"></i></a> -->
+              <!-- TEST -->
+      <form method="post">
+        <input type="hidden" name="img" id="img" value="">
+        <input type="submit" name="takePhoto" class="col text-center rounded main-color border-0 text-white font-roboto" id="save" style="display: none;">
+      </form>
+      <!-- ENDOFTEST -->
         <a onclick="toggleDiv('showUpload')" id="uploader" class="col-3 icon-effect"><i class="fas fa-cloud-upload-alt text-center col" style="font-size: 35px;"></i></a>
         <a onclick="reloadCamera()" class="col-3" style="display: none;" id="delete"><i class="fas fa-trash-alt text-center col" style="font-size: 35px;"></i></a>
       </div>
@@ -22,7 +32,7 @@ class ViewMontage extends View
         <hr>
         <div class="row justify-content-center">
           <form method="post" enctype="multipart/form-data">
-            <input type="file" name="imageUpload" id="input-file-now" class="file-upload rounded" />
+            <input type="file" name="imageUpload" size="40" id="input-file-now" class="file-upload rounded" />
             <input type="submit" class="rounded">
           </form>
         </div>

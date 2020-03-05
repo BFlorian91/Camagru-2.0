@@ -3,21 +3,24 @@
   class ModelMontage extends Model
   {
 
+    private $_outputfile;
+
     public function __construct()
     {
       parent::__construct();
       $this->_db = $this->connect();
-      $this->_db->exec("USE " . getenv("DB_NAME"));
+      $this->_db->exec("USE " . DB_NAME);
+      $this->_outputfile = null;
     }
 
-    public function uploadImage($image)
+    public function uploadImage()
     {
-      if (empty($image['name'])) {
+      if (empty($_FILES['imageUpload']['name'])) {
         return $this->message->error("No file chosen");
       }
-      $imageExt = strtolower(end(explode('.', $image['name'])));
-      $imageSize = $image['size'];
-      $imageTmp = $image['tmp_name'];
+      $imageExt = strtolower(end(explode('.', $_FILES['imageUpload']['name'])));
+      $imageSize = $_FILES['imageUpload']['size'];
+      $imageTmp = $_FILES['imageUpload']['tmp_name'];
 
       $imageExtAuth = ['jpg', 'jpeg', 'png'];
 
@@ -27,8 +30,26 @@
       if (in_array($imageExt, $imageExtAuth) === false) {
         return $this->message->error("Bad image format, only 'jpg' 'jpeg' and 'png' is accepted");
       }
-      // echo $imageTmp . "</br>";
-      // echo sys_get_temp_dir();
-      move_uploaded_file($imageTmp, "/uploads/" . $_SESSION['username'] . "_" . date("Y-m-d_H:i:s") . "." . $imageExt);
+      move_uploaded_file($imageTmp, "./lib/userImg/" . $_SESSION['username'] . "_" . date("Y-m-d_H:i:s") . "." . $imageExt);
+      $this->_outputfile = "./lib/userImg/" . $_SESSION['username'] . "_" . date("Y-m-d_H:i:s") . "." . $imageExt;
+    }
+
+    public function getImage()
+    {
+      $this->_outputfile = "./lib/userImg/" . $_SESSION['username'] . str_replace(" ", "_", date("Y-m-d H:i:s")) . '.png';
+      
+      $base64_string = $_POST['img'];
+      $ifp = fopen($this->_outputfile, 'wb' ); 
+      $data = explode( ',', $base64_string );
+      fwrite( $ifp, base64_decode( $data[1] ) );
+      fclose( $ifp );
+    }
+
+    public function pushImgToDb()
+    {   
+      $stmt = $this->_db->prepare("INSERT INTO gallery(img, userId) VALUE (:img, :userId);");
+      $stmt->bindParam(":img", $this->_outputfile);
+      $stmt->bindParam(":userId", $_SESSION['userId']);
+      $stmt->execute();
     }
   }
