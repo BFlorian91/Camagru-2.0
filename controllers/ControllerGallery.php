@@ -28,7 +28,6 @@
       $action = new ModelGallery();
       $action->fetchAllImg();
       // $this->_action->fetchAllImg();
-      die("FETCH GALLERY ERROR");
     }
 
     public function getUserImg()
