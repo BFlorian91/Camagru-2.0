@@ -1,7 +1,7 @@
 <?php
 
     Route::set('explore', function() {
-      ControllerGallery::CreateView();
+      ControllerGallery::gallery();
     });
 
     Route::set('signin', function() {
@@ -20,12 +20,12 @@
       if (trim($_SESSION['token'])) {
         ControllerAccountEdit::CreateView();
       }
-      ControllerGallery::CreateView();
+      ControllerGallery::gallery();
     });
 
     Route::set('user', function() {
       if (trim($_SESSION['token'])) {
-        ControllerUserGallery::CreateView();
+        ControllerGallery::userGallery();
       } else {
         ControllerSignin::CreateView();
       }
@@ -35,7 +35,7 @@
       if (trim($_SESSION['token'])) {
         ControllerMontage::CreateView();
       } else {
-        ControllerGallery::CreateView();
+        ControllerGallery::gallery();
       }
     });
 
@@ -48,8 +48,14 @@
     });
 
 
-    // ----- fetch ----- //
+    // ----- fetch ajax ----- //
 
     Route::set('getAllImg', function() {
       ControllerGallery::getAllImg();
     });
+
+    Route::set('getUserImg', function() {
+      ControllerGallery::getUserImg();
+    });
+
+    // --------------------- //

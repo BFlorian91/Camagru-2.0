@@ -1,6 +1,6 @@
 <?php
 
-class Controller
+abstract class Controller
 {
   
   // public static function CreateView($viewName)

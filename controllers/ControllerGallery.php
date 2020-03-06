@@ -2,17 +2,38 @@
 
   class ControllerGallery extends Controller
   {
-    public static function CreateView() 
+
+    private $_action;
+
+    public function __construct()
+    {
+      $this->_action = new ModelGallery();
+    }
+
+    public static function gallery()
     {
       $view = new ViewGallery();
-      // $action = new modelGallery();
-      // $action->fetchAll();
       $view->build_page();
     }
 
-    public static function getAllImg()
+    public function userGallery()
     {
-      $action = new modelGallery();
+      $view = new ViewUserGallery();
+      $view->build_page();
+    } 
+
+    public function getAllImg()
+    {
+      // die($this->_action . "OK");
+      $action = new ModelGallery();
       $action->fetchAllImg();
+      // $this->_action->fetchAllImg();
+      die("FETCH GALLERY ERROR");
+    }
+
+    public function getUserImg()
+    {
+      $action = new ModelGallery();
+      $action->fetchUserImg();
     }
   }
