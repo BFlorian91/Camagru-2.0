@@ -1,6 +1,6 @@
 <?php
 
-class View
+abstract class View
 {
   protected $_html_element;
 

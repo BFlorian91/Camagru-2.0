@@ -39,6 +39,7 @@
       `id` INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
       `img` VARCHAR(100) NOT NULL,
       `userId` INT(11) NOT NULL,
+      `imgDate` DATETIME NOT NULL,
       FOREIGN KEY (userId) REFERENCES users(id)
     )");
     echo $message->success("Gallery TABLE has been created!");

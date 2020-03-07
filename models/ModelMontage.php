@@ -2,14 +2,13 @@
 
   class ModelMontage extends Model
   {
-
+    private $_db;
     private $_outputfile;
 
     public function __construct()
     {
       parent::__construct();
       $this->_db = $this->connect();
-      $this->_db->exec("USE " . DB_NAME);
       $this->_outputfile = null;
     }
 
@@ -39,15 +38,15 @@
       $this->_outputfile = "./lib/userImg/" . $_SESSION['username'] . str_replace(" ", "_", date("Y-m-d H:i:s")) . '.png';
       
       $base64_string = $_POST['img'];
-      $ifp = fopen($this->_outputfile, 'wb' ); 
-      $data = explode( ',', $base64_string );
-      fwrite( $ifp, base64_decode( $data[1] ) );
-      fclose( $ifp );
+      $ifp = fopen($this->_outputfile, 'wb'); 
+      $data = explode( ',', $base64_string);
+      fwrite($ifp, base64_decode($data[1] ));
+      fclose($ifp);
     }
 
     public function pushImgToDb()
-    {   
-      $stmt = $this->_db->prepare("INSERT INTO gallery(img, userId) VALUE (:img, :userId);");
+    {
+      $stmt = $this->_db->prepare("INSERT INTO gallery(img, userId, imgDate) VALUES (:img, :userId, NOW())");
       $stmt->bindParam(":img", $this->_outputfile);
       $stmt->bindParam(":userId", $_SESSION['userId']);
       $stmt->execute();
