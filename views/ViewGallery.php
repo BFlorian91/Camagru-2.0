@@ -4,7 +4,7 @@ class ViewGallery extends View
 {
   public function body()
   { ?>
-  <div class="container container-size" id="imgFetch">
+  <div class="container container-size full-height" id="imgFetch">
       <!-- Card -->
     <script>
       let ajax = new XMLHttpRequest();

@@ -12,9 +12,8 @@
     public function fetchAllImg()
     {
       $stmt = $this->_db->prepare(
-        "SELECT id, img FROM gallery ORDER BY id DESC");
+        "SELECT id, img, imgDate FROM gallery ORDER BY id DESC");
       $stmt->execute();
-      $i = 0;
       while ($row = $stmt->fetch()) {
         ?>
           <div class="row justify-content-center">
@@ -27,36 +26,34 @@
                     class="w-100 thumb-zoom" src="<?= $row['img'] ?>" 
                     alt="Card image">
                 </div>
-                <!-- <a href="#!">
-                  <div class="mask rgba-white-slight"></div>
-                </a> -->
-                <!-- Card footer -->
                 <div class="rounded-bottom bg-unique-color lighten-3 text-center pt-3 pb-1">
                   <ul class="list-unstyled list-inline font-small">
                     <li 
                       class="list-inline-item pr-2 white-text">
                       <i class="far fa-clock pr-1 text-warning"></i>
-                      12/01/2020
+                      <?= str_replace('-', ' ', $row['imgDate']); ?>
                     </li>
                     <li class="list-inline-item pr-2">
                       <a href="#" class="white-text">
-                        <i class="far fa-comments pr-1 text-info"></i>
-                        7
+                      <i class="far fa-comments pr-1 text-info"></i>
+                        <?= "7" ?>
                       </a>
                     </li>
                     <li class="list-inline-item pr-2">
-                      <a href="#" class="white-text">
-                        <i class="fas fa-heart pr-1 text-danger"></i>
-                        9
-                      </a>
+                      <!-- <a href="signin" class="white-text"> -->
+                        <i id="like" class="fas fa-heart pr-1 text-danger"></i>
+                        <?= "9" ?>
+                      <!-- </a> -->
                     </li>
                   </ul> 
                 </div>
               </div>
             </div>
+            <script>
+              document.getElementById("like").style.display = 'none'
+            </script>
           </div>
         <?php
-        $i++;
       }
     }
 

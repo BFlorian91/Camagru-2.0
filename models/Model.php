@@ -11,10 +11,10 @@
 
     public function connect()
     {
+      require 'config/database.php';
       try {
-        $db = new PDO('mysql:host=localhost;port:8889', 'root', 'root');
+        $db = new PDO($DB_DSN, $DB_USER, $DB_PASSWORD);
         $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-        $db->exec("USE " . DB_NAME);
         return $db;
       } catch(PDOException $e) {
         echo $this->message->error($e->getMessage());

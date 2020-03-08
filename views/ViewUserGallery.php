@@ -27,7 +27,7 @@ class ViewUserGallery extends View
       <!-- Card -->
       <div id="imgUserFetch"></div>
       <script>
-      let ajax = new XMLHttpRequest();
+      const ajax = new XMLHttpRequest();
       ajax.open("GET", "getUserImg", true)
 
       //recieve response
