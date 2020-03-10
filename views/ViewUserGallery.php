@@ -3,7 +3,11 @@
 class ViewUserGallery extends View
 {
   public function body()
-  { ?>
+  { 
+    $gallery = new ModelGallery();
+    $rows = $gallery->fetchUserImg();
+    print_r($rows);
+    ?>
     <div class="container container-settings">
       <div class="row justify-content-md-center m-0">
         <div class="col-lg-2 col-xs-12 col-sm-12 col-md-3">
@@ -25,19 +29,55 @@ class ViewUserGallery extends View
       <hr class="bg-light mb-4 w-50" style="opacity: 0.6">
 
       <!-- Card -->
-      <div id="imgUserFetch"></div>
+      <?php foreach($rows as $row) :?>
+      <div class="row justify-content-center">
+            <div class="col row justify-content-center">
+              <div 
+                class=" pl-0 pr-0 mb-4 border border-info" 
+                style="max-width: 500px; box-shadow: 6px 6px 6px black;"
+              >
+                <div class="overflow-hidden w-100">
+                  <img 
+                    class="w-100 thumb-zoom" 
+                    src="<?= $row[1] ?>" alt="Card image"
+                  >
+                </div>
+                <div class="rounded-bottom bg-unique-color lighten-3 text-center pt-3 pb-1">
+                  <ul class="list-unstyled list-inline font-small">
+                    <li class="list-inline-item pr-2 white-text">
+                      <i class="far fa-clock pr-1 text-warning"></i>
+                      <?= $row[2] ?>
+                    </li>
+                    <li class="list-inline-item pr-2">
+                      <a href="#" class="white-text">
+                        <i class="far fa-comments pr-1 text-info"></i>
+                        7
+                      </a>
+                    </li>
+                    <li class="list-inline-item pr-2">
+                      <a href="#" class="white-text">
+                        <i class="fas fa-heart pr-1 text-danger"></i>
+                        9
+                      </a>
+                    </li>
+                  </ul> 
+                </div>
+              </div>
+            </div>
+          </div>
+          <?php endforeach; ?>
       <script>
-      const ajax = new XMLHttpRequest();
-      ajax.open("GET", "getUserImg", true)
+      // const ajax = new XMLHttpRequest();
+      // ajax.open("GET", "getUserImg", true)
 
-      //recieve response
-      ajax.onreadystatechange = () => {
-        if (ajax.readyState == 4 && ajax.status == 200) {
-          document.getElementById('imgUserFetch').innerHTML = ajax.responseText
-        }
-      }
-      //sending request
-      ajax.send()
+      // //recieve response
+      // ajax.onreadystatechange = () => {
+      //   if (ajax.readyState == 4 && ajax.status == 200) {
+      //     document.getElementById('imgUserFetch').innerHTML = ajax.responseText
+      //   }
+      // }
+      // //sending request
+      // ajax.send()
     </script>
     </div>
     </div>
