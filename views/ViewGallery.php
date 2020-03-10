@@ -6,7 +6,7 @@ class ViewGallery extends View
   { 
     $gallery = new ModelGallery();
     $rows = $gallery->fetchAllImg();
-    print_r($rows);
+    // print_r($rows);
     ?>
 <div class="container container-size full-height" id="imgFetch">
   <!-- Card -->
@@ -20,21 +20,34 @@ class ViewGallery extends View
           </div>
           <div class="rounded-bottom bg-unique-color lighten-3 text-center pt-3 pb-1">
             <ul class="list-unstyled list-inline font-small">
-              <li class="list-inline-item pr-2 white-text">
+              <li class="list-inline-item white-text">
                 <div id="imgDate">
-                  <i class="far fa-clock pr-1 text-warning"></i>
+                  <i class="far fa-clock text-warning"></i>
                   <?= $row[2] ?>
                 </div>
               </li>
-              <li class="list-inline-item pr-2">
-                <a href="#" class="white-text">
+              <li class="list-inline-item">
+                <a href="comment" class="white-text">
                   <?= "7" ?>
-                  <i class="far fa-comments pr-1 text-info"></i>
+                  <i class="far fa-comments text-info"></i>
                 </a>
               </li>
-              <li class="list-inline-item pr-2">
+              <li class="list-inline-item">
                 <form method="post">
-                  <i onclick="postLike()" id="like" class="fas fa-heart pr-1 text-danger"></i>
+                  <input type="hidden" name="imageId" value="<?= $row[0] ?>">
+                  <button 
+                    type="submit" 
+                    value="1"
+                    name="like"
+                    style="background-color: rgba(0,0,0,0); border: none;"
+                  >
+                    <i 
+                      id="like" 
+                      name="like" 
+                      class="mt-1 fas fa-heart text-danger">
+                    </i>
+                  </button>
+                    <!-- <?= 9 ?> number of like here -->
                 </form>
               </li>
             </ul>

@@ -31,6 +31,10 @@
       }
     });
 
+    Route::set('comment', function() {
+      ControllerGallery::comment();
+    });
+
     Route::set('personal-montage', function() {
       if (trim($_SESSION['token'])) {
         ControllerMontage::CreateView();

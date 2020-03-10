@@ -35,4 +35,23 @@
       $action = new ModelGallery();
       $action->fetchUserImg();
     }
+
+    // inprogress
+    public function like()
+    {
+      if (isset($_POST["imageId"])) {
+        die("coucou");
+        $action = new ModelGallery();
+        $action->likeGestion();
+      }
+    }
+    ///////////////
+    public function comment()
+    {
+      $view = new ViewComment();
+      $action = new ModelGallery();
+
+      $view->build_page();
+      
+    }
   }

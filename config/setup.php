@@ -53,7 +53,7 @@
     $db->exec("CREATE TABLE `like` (
       `id` INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
       `userId` INT(11) NOT NULL,
-      `galleryId` INT(11) NOT NULL,
+      `imageId` INT(11) NOT NULL,
       `liked` VARCHAR(1) NOT NULL DEFAULT '0',
       FOREIGN KEY (userId) REFERENCES users(id),
       FOREIGN KEY (galleryId) REFERENCES gallery(id)

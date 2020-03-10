@@ -30,4 +30,18 @@
       }
       return ($rows);
     }
+
+    public function likeGestion()
+    {
+      $stmt = $this->_db->prepare("SELECT * FROM `like` WHERE imageId = :imageId");
+      $stmt->bindParam(":imageId", $_POST['imageId']);
+      $stmt->execute();
+      $row = $stmt->fetch();
+      die($row);
+    }
+
+    public function comment()
+    {
+      // fetch img target and fetch all comment return to an array and parse in php to view EZ MONEY
+    }
   }
