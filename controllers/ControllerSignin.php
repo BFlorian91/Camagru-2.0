@@ -12,6 +12,8 @@
         $password = htmlspecialchars($_POST['password']);
         if ($action->signin($username, $password)) {
           $view = new ViewGallery();
+          header('Location: explore');
+          die();
         }
       }
       $view->build_page();

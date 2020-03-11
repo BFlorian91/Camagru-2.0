@@ -15,8 +15,10 @@
         $password = htmlspecialchars($_POST['password']);
         $action->signup($username, $email, $password);
         $view = new ViewGallery();
-        $view->build_page();
-        return true;
+        header('Location: explore');
+        die();
+        // $view->build_page();
+        // return true;
       }
       $view->build_page();
     }

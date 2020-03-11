@@ -60,15 +60,18 @@
       }
     }
 
-    public function getLikedStatus($db)
+    public function getLikedStatus()
     {
+      $db = $this->connect();
       $userId = $_SESSION['userId'];
       $imageId = $_POST['imageId'];
 
       $stmt = $db->query("SELECT * FROM `like` WHERE imageId = '$imageId' AND userId = '$userId'");
 
       while ($row = $stmt->fetch()) {
-        return $row[3];
+        if ($imageId == $row[2]) {
+          return $row[3];
+        }
       }
     }
 }

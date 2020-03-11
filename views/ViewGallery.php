@@ -3,10 +3,10 @@
 class ViewGallery extends View
 {
   public function body()
-  { 
+  {
     $gallery = new ModelGallery();
     $rows = $gallery->fetchAllImg();
-    // print_r($rows);
+
     ?>
 <div class="container container-size full-height" id="imgFetch">
   <!-- Card -->
@@ -61,6 +61,7 @@ class ViewGallery extends View
                 </form>
               </li>
 
+              <?php  $like = $gallery->getStyleLiked($row[0]); ?>
               <!-- LIKE !  -->
               <li class="list-inline-item">
                 <form method="post">
@@ -73,10 +74,11 @@ class ViewGallery extends View
                   >
                     <i 
                       id="like" 
-                      class="mt-1 fas fa-heart text-danger">
+                      class="mt-1 fas fa-heart <?=  $like == 0 ? '' : ' text-danger' ?>"
+                    >
                     </i>
                   </button>
-                    <!-- <?= 9 ?> number of like here -->
+                    <?= $gallery->getNbLike($row[0]) ?>
                 </form>
               </li>
             </ul>
