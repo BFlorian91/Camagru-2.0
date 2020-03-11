@@ -9,7 +9,6 @@
       $view = new ViewSignup();
       $action = new ModelSignup();
   
-
       if (isset($_POST['username']) && isset($_POST['email']) && isset($_POST['password'])) {
         $username = htmlspecialchars($_POST['username']);
         $email = htmlspecialchars($_POST['email']);

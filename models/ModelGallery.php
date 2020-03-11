@@ -33,15 +33,39 @@
 
     public function likeGestion()
     {
-      $stmt = $this->_db->prepare("SELECT * FROM `like` WHERE imageId = :imageId");
+      $stmt = $this->_db->prepare("SELECT * FROM `like` WHERE imageId = :imageId AND userId = :userId");
       $stmt->bindParam(":imageId", $_POST['imageId']);
+      $stmt->bindParam(":userId", $_SESSION['userId']);
       $stmt->execute();
-      $row = $stmt->fetch();
-      die($row);
+
+      $liked = $this->getLikedStatus($this->_db);
+      
+      if ($stmt->rowCount() < 1) {
+        $liked = 1;
+        $stmt = $this->_db->prepare("INSERT INTO `like`(userId, imageId, liked) VALUE (:userId, :imageId, :liked)");
+        $stmt->bindParam(":userId", $_SESSION['userId']);
+        $stmt->bindParam(":imageId", $_POST['imageId']);
+        $stmt->bindParam(":liked", $liked);
+        $stmt->execute();
+      } else {
+        if ($liked) {
+          $stmt = $this->_db->prepare("UPDATE `like` SET liked = 0 WHERE userId = " . $_SESSION['userId'] . " AND imageId = " . $_POST['imageId']);
+          $stmt->execute();
+
+          $liked = 0;
+          return $liked;
+        }
+          $stmt = $this->_db->prepare("UPDATE `like` SET liked = 1  WHERE userId = " . $_SESSION['userId'] . " AND imageId = " . $_POST['imageId']);
+          $stmt->execute();
+          
+          $liked = 1 ;         
+      }
+      return $liked;
     }
 
     public function comment()
     {
       // fetch img target and fetch all comment return to an array and parse in php to view EZ MONEY
+      $stmt = $this->_db->prepare("SELECT * FROM comment");
     }
   }

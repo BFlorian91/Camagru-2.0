@@ -6,8 +6,9 @@
   try {
     $db = new PDO('mysql:host=localhost;port:8889', 'root', 'root');
     $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-    $db->exec("DROP DATABASE IF EXISTS " . DB_NAME);
-    $db->exec("CREATE DATABASE " . DB_NAME);
+    $db->exec("DROP DATABASE IF EXISTS camagru");
+    $db->exec("CREATE DATABASE camagru");
+    $db->exec("USE camagru");
     echo $message->success("Database is installed!");
 
   } catch(PDOException $e) {
@@ -17,7 +18,6 @@
 
   // CREATE USERS TABLES 
   try {
-    $db->exec("USE " . DB_NAME);
     $db->exec("CREATE TABLE `users` (
       `id` INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
       `username` VARCHAR(50) NOT NULL,
@@ -56,7 +56,7 @@
       `imageId` INT(11) NOT NULL,
       `liked` VARCHAR(1) NOT NULL DEFAULT '0',
       FOREIGN KEY (userId) REFERENCES users(id),
-      FOREIGN KEY (galleryId) REFERENCES gallery(id)
+      FOREIGN KEY (imageId) REFERENCES gallery(id)
     )");
     echo $message->success("Like TABLE has been created!");
   } catch(PDOException $e) {
@@ -69,10 +69,10 @@
     $db->exec("CREATE TABLE `comment` (
       `id` INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
       `userId` INT(11) NOT NULL,
-      `galleryId` INT(11) NOT NULL,
+      `imageId` INT(11) NOT NULL,
       `comment` VARCHAR(255) NOT NULL,
       FOREIGN KEY (userId) REFERENCES users(id),
-      FOREIGN KEY (galleryId) REFERENCES gallery(id)  
+      FOREIGN KEY (imageId) REFERENCES gallery(id)  
     )");
     echo $message->success("Comment TABLE has been created!");
   } catch(PDOException $e) {

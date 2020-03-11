@@ -24,7 +24,8 @@
 
     public function checkIfUserExist($username, $db)
     {
-      $stmt = $db->prepare("SELECT `username` FROM `users` WHERE username='$username'");
+      $stmt = $db->prepare("SELECT `username` FROM `users` WHERE username = :username");
+      $stmt->bindParam(":username", $username);
       $stmt->execute();
 
       if($stmt->rowCount() > 0){
@@ -36,7 +37,8 @@
 
     public function checkIfMailExist($mail, $db)
     {
-      $stmt = $db->prepare("SELECT `mail` FROM `users` WHERE `mail`='$mail'");
+      $stmt = $db->prepare("SELECT `mail` FROM `users` WHERE `mail` = :mail");
+      $stmt->bindParam("mail", $mail);
       $stmt->execute();
 
       if($stmt->rowCount() > 0){
@@ -55,6 +57,18 @@
         return -1;
       } else {
         return 0;
+      }
+    }
+
+    public function getLikedStatus($db)
+    {
+      $userId = $_SESSION['userId'];
+      $imageId = $_POST['imageId'];
+
+      $stmt = $db->query("SELECT * FROM `like` WHERE imageId = '$imageId' AND userId = '$userId'");
+
+      while ($row = $stmt->fetch()) {
+        return $row[3];
       }
     }
 }
