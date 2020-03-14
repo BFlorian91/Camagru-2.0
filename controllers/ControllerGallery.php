@@ -8,17 +8,25 @@ class ControllerGallery extends Controller
       $view = new ViewGallery();
       $action = new ModelGallery();
 
+      $imageId = filter_input(INPUT_POST, "imageId");
+      $like = filter_input(INPUT_POST, "like");
+
       $action->fetchAllImg();
-      if (isset($_POST['imageId']) && isset($_POST['commentPage']) == 1) {
-        $view = new ViewComment();
-        $action->fetchComment();
-      }
-      if (isset($_POST['comment']) && isset($_POST['imageId'])) {
-        die("test hello");
-      }
-      if (isset($_POST['imageId']) && isset($_POST['like']) == 1) {
+      if (isset($imageId) && isset($like) == 1) {
         $action->likeGestion();
       }
+      $view->build_page();
+    }
+
+    public function commentsPage()
+    {
+      $view = new ViewComment();
+      $action = new ModelGallery();
+
+      if (isset($_POST['comment']) && trim($_POST['comment']) != "") {
+        $action->postComment();
+      }
+      $action->fetchComment();
       $view->build_page();
     }
 

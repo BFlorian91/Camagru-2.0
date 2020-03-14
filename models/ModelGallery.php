@@ -28,19 +28,11 @@
       while ($row = $stmt->fetch()) {
         $rows[] = $row;
       }
-      return ($rows);
-    }
-
-    public function fetchCommentImage()
-    {
-      $stmt = $this->_db->prepare("SELECT * FROM gallery WHERE id = :imageId");
-      $stmt->bindParam(":imageId", $_POST['imageId']);
-      $stmt->execute();
-      while ($row = $stmt->fetch()) {
-        $rows[] = $row;
-      }
       return $rows;
     }
+
+
+    // LIKE //
 
     public function likeGestion()
     {
@@ -97,6 +89,20 @@
       return $nbLike;
     }
 
+
+    // COMMENT //
+
+    public function fetchCommentImage()
+    {
+      $stmt = $this->_db->prepare("SELECT * FROM gallery WHERE id = :imageId");
+      $stmt->bindParam(":imageId", $_POST['imageId']);
+      $stmt->execute();
+      while ($row = $stmt->fetch()) {
+        $rows[] = $row;
+      }
+      return $rows;
+    }
+
     public function postComment()
     {
       $stmt = $this->_db->prepare("INSERT INTO comment(userId, imageId, comment) VALUE(:userId, :imageId, :comment)");
@@ -108,13 +114,29 @@
 
     public function fetchComment()
     {
-       // fetch img target and fetch all comment return to an array and parse in php to view EZ MONEY
       $imageId = $_POST['imageId'];
-      $stmt = $this->_db->query("SELECT * FROM comment WHERE imageId = '$imageId'");
+
+      $stmt = $this->_db->prepare("SELECT * FROM comment WHERE imageId = :imageId ORDER BY id DESC");
+      $stmt->bindParam(":imageId", $imageId);
+      $stmt->execute();
       while ($row = $stmt->fetch()) {
-        if ($imageId == $row[2]) {
-          return $row[3];
+        $rows[] = $row;
+      }
+      return $rows;
+    }
+
+    public function fetchUsername($userId)
+    {
+      $stmt = $this->_db->prepare("SELECT * FROM users");
+      $stmt->execute();
+      $users = $stmt->fetchALL();
+
+      foreach($users as $user) {
+        if ($user[0] == $userId) {
+          return $user[1];
         }
       }
     }
+    ////////////////////////
+
   }

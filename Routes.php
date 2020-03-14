@@ -31,8 +31,8 @@
       }
     });
 
-    Route::set('comment', function() {
-      ControllerGallery::createView();
+    Route::set('comments', function() {
+      ControllerGallery::commentsPage();
     });
 
     Route::set('personal-montage', function() {

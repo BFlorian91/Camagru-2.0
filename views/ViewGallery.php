@@ -31,10 +31,9 @@ class ViewGallery extends View
 
               <!-- COMMENT ! -->
               <li class="list-inline-item">
-                <form method="post">
-                  <input type="hidden" name="userId" value="<?= $_POST['userId'] ?>">
+                <form action="comments" method="post">
                   <input type="hidden" name="imageId" value="<?= $row[0] ?>">
-                  <button type="submit" value="1" name="commentPage" style="background-color: rgba(0,0,0,0); border: none;">
+                  <button type="submit" style="background-color: rgba(0,0,0,0); border: none;">
                     <i class="far fa-comments text-info"></i>
                   </button>
                 </form>
