@@ -4,7 +4,7 @@
   {
     public $db;
 
-    public static function CreateView()
+    public static function createView()
     {
       $view = new ViewSignup();
       $action = new ModelSignup();

@@ -2,7 +2,7 @@
 
   class ControllerAccountEdit extends Controller
   {
-    public function CreateView()
+    public function createView()
     {
       $view = new ViewAccountEdit();
       $action = new ModelEditAccount();

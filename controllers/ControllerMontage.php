@@ -2,7 +2,7 @@
 
   class ControllerMontage extends Controller
   {
-    public function CreateView()
+    public function createView()
     {
       $view = new ViewMontage();
       $action = new ModelMontage();

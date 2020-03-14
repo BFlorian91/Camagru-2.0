@@ -2,7 +2,7 @@
 
   class ControllerSignin extends Controller
   {
-    public static function CreateView()
+    public static function createView()
     {
       $view = new ViewSignin();
       $action = new ModelSignin();

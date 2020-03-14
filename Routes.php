@@ -1,65 +1,65 @@
 <?php
 
     Route::set('explore', function() {
-      ControllerGallery::gallery();
+      ControllerGallery::createView();
     });
 
     Route::set('signin', function() {
-      ControllerSignin::CreateView();
+      ControllerSignin::createView();
     });
     
     Route::set('signup', function() {
-      ControllerSignup::CreateView();
+      ControllerSignup::createView();
     });
 
     Route::set('logout', function() {
-      ControllerLogout::CreateView();
+      ControllerLogout::createView();
     });
 
     Route::set('edit-account', function() {
       if (trim($_SESSION['token'])) {
-        ControllerAccountEdit::CreateView();
+        ControllerAccountEdit::createView();
       }
-      ControllerGallery::gallery();
+      ControllerGallery::createView();
     });
 
     Route::set('user', function() {
       if (trim($_SESSION['token'])) {
         ControllerGallery::userGallery();
       } else {
-        ControllerSignin::CreateView();
+        ControllerSignin::createView();
       }
     });
 
     Route::set('comment', function() {
-      ControllerGallery::comment();
+      ControllerGallery::createView();
     });
 
     Route::set('personal-montage', function() {
       if (trim($_SESSION['token'])) {
-        ControllerMontage::CreateView();
+        ControllerMontage::createView();
       } else {
-        ControllerGallery::gallery();
+        ControllerGallery::createView();
       }
     });
 
     Route::set('not-available', function() {
-      ControllerNotAvailable::CreateView();
+      ControllerNotAvailable::createView();
     });
 
     Route::set('setup', function() {
-      ControllerSetup::CreateView();
+      ControllerSetup::createView();
     });
 
 
-    // ----- fetch ajax ----- //
+    // // ----- fetch ajax ----- //
 
-    Route::set('getAllImg', function() {
-      ControllerGallery::getAllImg();
-    });
+    // Route::set('getAllImg', function() {
+    //   ControllerGallery::getAllImg();
+    // });
 
-    Route::set('getUserImg', function() {
-      ControllerGallery::getUserImg();
-    });
+    // Route::set('getUserImg', function() {
+    //   ControllerGallery::getUserImg();
+    // });
 
-    // --------------------- //
+    // // --------------------- //

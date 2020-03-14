@@ -2,7 +2,7 @@
 
   class ControllerNotAvailable extends Controller
   {
-    public function CreateView()
+    public function createView()
     {
       $view = new ViewNotAvailable();
       $view->build_page();
