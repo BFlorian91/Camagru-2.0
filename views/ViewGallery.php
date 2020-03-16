@@ -36,6 +36,7 @@ class ViewGallery extends View
                   <button type="submit" style="background-color: rgba(0,0,0,0); border: none;">
                     <i class="far fa-comments text-info"></i>
                   </button>
+                  <?= $gallery->getNbComment($row[0]); ?>
                 </form>
               </li>
 

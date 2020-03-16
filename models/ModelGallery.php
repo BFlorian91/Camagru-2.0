@@ -102,6 +102,21 @@
       }
       return $rows;
     }
+    public function getNbComment($imageId)
+    {
+      // $imageId = $_POST['imageId'];
+
+      $stmt = $this->_db->prepare("SELECT * FROM comment WHERE imageId = :imageId");
+      $stmt->bindParam(":imageId", $imageId);
+      $stmt->execute();
+      $nbComment = 0;
+
+      while ($stmt->fetch()) {
+        $nbComment++;
+      }
+
+      return $nbComment;
+    }
 
     public function postComment()
     {
