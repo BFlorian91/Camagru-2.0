@@ -4,11 +4,13 @@
   {
     public $message;
     protected $userId;
+    protected $userName;
 
     public function __construct()
     {
       $this->message = new Tools();
       $this->userId = $_SESSION['userId'];
+      $this->userName = $_SESSION['username'];
     }
 
     public function connect()
@@ -20,7 +22,7 @@
         return $db;
       } catch(PDOException $e) {
         echo $this->message->error($e->getMessage());
-        die(-1);
+        return (-1);
       }
     }
 
@@ -62,10 +64,11 @@
     public function getLikedStatus()
     {
       $db = $this->connect();
-      $userId = $_SESSION['userId'];
-      $imageId = $_POST['imageId'];
+      $imageId = filter_input(INPUT_POST, "imageId");
 
-      $stmt = $db->query("SELECT * FROM `like` WHERE imageId = '$imageId' AND userId = '$userId'");
+      $stmt = $db->prepare("SELECT * FROM `like` WHERE imageId = :imageId AND userId = :userId");
+      $stmt->bindParam(":imageId", $imageId);
+      $stmt->bindParam(":userId", $this->userId);
 
       while ($row = $stmt->fetch()) {
         if ($imageId == $row[2]) {

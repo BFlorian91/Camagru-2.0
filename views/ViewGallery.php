@@ -16,7 +16,7 @@ class ViewGallery extends View
       <div class="col row justify-content-center">
         <div class=" pl-0 pr-0 mb-4 border border-info" style="max-width: 500px; box-shadow: 6px 6px 6px black;">
 
-          <!-- IMAGE !  -->
+          <!-- IMAGE -->
           <div class="overflow-hidden w-100">
             <img class="w-100 thumb-zoom" alt="Card image" id="img" src="<?= $row[1] ?>">
           </div>
@@ -29,7 +29,7 @@ class ViewGallery extends View
                 </div>
               </li>
 
-              <!-- COMMENT ! -->
+              <!-- COMMENT -->
               <li class="list-inline-item">
                 <form action="comments" method="post">
                   <input type="hidden" name="imageId" value="<?= $row[0] ?>">
@@ -40,8 +40,8 @@ class ViewGallery extends View
                 </form>
               </li>
 
+              <!-- LIKE -->
               <?php  $like = $gallery->getStyleLiked($row[0]); ?>
-              <!-- LIKE !  -->
               <li class="list-inline-item">
                 <form action="explore" method="post">
                   <input type="hidden" name="imageId" value="<?= $row[0] ?>">
@@ -60,7 +60,6 @@ class ViewGallery extends View
   </div>
   <?php endforeach; ?>
 </div>
-<!-- </div> -->
 
 <?php
   }

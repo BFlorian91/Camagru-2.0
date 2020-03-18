@@ -8,8 +8,9 @@
       $action = new ModelMontage();
 
       if (isset($_FILES['imageUpload'])) {
-        $action->uploadImage();
-        $action->pushImgToDb();
+        if ($action->uploadImage()) {
+          $action->pushImgToDb();
+        }
       }
       if (isset($_POST['takePhoto'])) {
         $action->getImage();

@@ -9,6 +9,9 @@
       $this->_db = $this->connect();
     }
 
+
+    // GALLERY //
+
     public function fetchAllImg()
     {
       $stmt = $this->_db->prepare(
@@ -158,6 +161,4 @@
         }
       }
     }
-    ////////////////////////
-
   }

@@ -22,8 +22,9 @@ class ControllerGallery extends Controller
     {
       $view = new ViewComment();
       $action = new ModelGallery();
+      $comment = trim(filter_input(INPUT_POST, "comment"));
 
-      if (isset($_POST['comment']) && trim($_POST['comment']) != "") {
+      if (isset($comment) && $comment != "") {
         $action->postComment();
       }
       $action->fetchComment();

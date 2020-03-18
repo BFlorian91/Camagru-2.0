@@ -19,10 +19,10 @@
       $response = $this->_db->query("SELECT `username`, `token`, `id` FROM users");
       while ($datas = $response->fetch()) {
         if ($datas['token'] == $_SESSION['token']) {
-          $id = $datas['id'];
+          $userId = $datas['id'];
 
           $stmt = $this->_db->prepare("UPDATE `users` SET `username`=?, `token`=? WHERE `id`=?");
-          $stmt->execute([$newUsername, $newToken, $id]);
+          $stmt->execute([$newUsername, $newToken, $userId]);
           $_SESSION['token'] = $newToken;
 
           return true;
