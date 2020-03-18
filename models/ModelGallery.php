@@ -23,7 +23,7 @@
     public function fetchUserImg()
     {
       $stmt = $this->_db->prepare("SELECT id, img,  userId FROM gallery WHERE userId = :userId ORDER BY id DESC");
-      $stmt->bindParam(":userId", $_SESSION['userId']);
+      $stmt->bindParam(":userId", $this->userId);
       $stmt->execute();
       while ($row = $stmt->fetch()) {
         $rows[] = $row;
@@ -37,30 +37,33 @@
     public function likeGestion()
     {
       $stmt = $this->_db->prepare("SELECT * FROM `like` WHERE imageId = :imageId AND userId = :userId");
-      $stmt->bindParam(":imageId", $_POST['imageId']);
-      $stmt->bindParam(":userId", $_SESSION['userId']);
+      $stmt->bindParam(":imageId", filter_input(INPUT_POST, "imageId"));
+      $stmt->bindParam(":userId", $this->userId);
       $stmt->execute();
 
       $liked = $this->getLikedStatus();
-      
       if ($stmt->rowCount() < 1) {
         $liked = 1;
         $stmt = $this->_db->prepare("INSERT INTO `like`(userId, imageId, liked) VALUE (:userId, :imageId, :liked)");
-        $stmt->bindParam(":userId", $_SESSION['userId']);
-        $stmt->bindParam(":imageId", $_POST['imageId']);
+        $stmt->bindParam(":userId", $this->userId);
+        $stmt->bindParam(":imageId", filter_input(INPUT_POST, "imageId"));
         $stmt->bindParam(":liked", $liked);
         $stmt->execute();
 
         return $liked;
       }
       if ($liked) {
-        $stmt = $this->_db->prepare("UPDATE `like` SET liked = 0 WHERE userId = " . $_SESSION['userId'] . " AND imageId = " . $_POST['imageId']);
+        $stmt = $this->_db->prepare("UPDATE `like` SET liked = 0 WHERE userId = :userId AND imageId = :imageId");
+        $stmt->bindParam(":userId", $this->userId);
+        $stmt->bindParam(":imageId", filter_input(INPUT_POST, "imageId"));
         $stmt->execute();
 
         $liked = 0;
         return $liked;
       }
-      $stmt = $this->_db->prepare("UPDATE `like` SET liked = 1  WHERE userId = " . $_SESSION['userId'] . " AND imageId = " . $_POST['imageId']);
+      $stmt = $this->_db->prepare("UPDATE `like` SET liked = 1  WHERE userId = :userId AND imageId = :imageId");
+      $stmt->bindParam(":userId", $this->userId);
+      $stmt->bindParam(":imageId", filter_input(INPUT_POST, "imageId"));
       $stmt->execute();
       $liked = 1;
 
@@ -69,8 +72,10 @@
     
     public function getStyleLiked($imgId)
     {
-      $userId = $_SESSION['userId'];
-      $stmt = $this->_db->query("SELECT * FROM `like` WHERE imageId = '$imgId' AND userId = '$userId'");
+      $stmt = $this->_db->prepare("SELECT * FROM `like` WHERE imageId = :imageId AND userId = :userId");
+      $stmt->bindParam(":imageId", $imgId);
+      $stmt->bindParam(":userId", $this->userId);
+      $stmt->execute();
       
       while ($row = $stmt->fetch()) {
         if ($imgId == $row[2]) {
@@ -81,7 +86,10 @@
 
     public function getNbLike($imgId)
     {
-      $stmt = $this->_db->query("SELECT * FROM `like` WHERE imageId = '$imgId' AND liked = 1");
+      $stmt = $this->_db->prepare("SELECT * FROM `like` WHERE imageId = :imageId AND liked = 1");
+      $stmt->bindParam(":imageId", $imgId);
+      $stmt->execute();
+
       $nbLike = 0;
       while ($stmt->fetch()) {
         $nbLike++;
@@ -95,17 +103,17 @@
     public function fetchCommentImage()
     {
       $stmt = $this->_db->prepare("SELECT * FROM gallery WHERE id = :imageId");
-      $stmt->bindParam(":imageId", $_POST['imageId']);
+      $stmt->bindParam(":imageId", filter_input(INPUT_POST, "imageId"));
       $stmt->execute();
+
       while ($row = $stmt->fetch()) {
         $rows[] = $row;
       }
       return $rows;
     }
+
     public function getNbComment($imageId)
     {
-      // $imageId = $_POST['imageId'];
-
       $stmt = $this->_db->prepare("SELECT * FROM comment WHERE imageId = :imageId");
       $stmt->bindParam(":imageId", $imageId);
       $stmt->execute();
@@ -121,18 +129,16 @@
     public function postComment()
     {
       $stmt = $this->_db->prepare("INSERT INTO comment(userId, imageId, comment) VALUE(:userId, :imageId, :comment)");
-      $stmt->bindParam(":userId", $_SESSION['userId']);
-      $stmt->bindParam(":imageId", $_POST['imageId']);
-      $stmt->bindParam(":comment", $_POST['comment']);
+      $stmt->bindParam(":userId", $this->userId);
+      $stmt->bindParam(":imageId", filter_input(INPUT_POST, "imageId"));
+      $stmt->bindParam(":comment", filter_input(INPUT_POST, "comment"));
       $stmt->execute();
     }
 
     public function fetchComment()
     {
-      $imageId = $_POST['imageId'];
-
       $stmt = $this->_db->prepare("SELECT * FROM comment WHERE imageId = :imageId ORDER BY id DESC");
-      $stmt->bindParam(":imageId", $imageId);
+      $stmt->bindParam(":imageId", filter_input(INPUT_POST, "imageId"));
       $stmt->execute();
       while ($row = $stmt->fetch()) {
         $rows[] = $row;

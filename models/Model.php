@@ -3,10 +3,12 @@
   abstract class Model
   {
     public $message;
+    protected $userId;
 
     public function __construct()
     {
       $this->message = new Tools();
+      $this->userId = $_SESSION['userId'];
     }
 
     public function connect()
@@ -30,9 +32,8 @@
 
       if($stmt->rowCount() > 0){
         return false;
-      } else {
-        return true;
       }
+      return true;
     }
 
     public function checkIfMailExist($mail, $db)
@@ -43,9 +44,8 @@
 
       if($stmt->rowCount() > 0){
         return false;
-      } else {
-        return true;
       }
+      return true;
     }
 
     public function checkPassword($password)
@@ -55,9 +55,8 @@
           return 1;
         }
         return -1;
-      } else {
-        return 0;
       }
+      return 0;
     }
 
     public function getLikedStatus()
@@ -74,4 +73,4 @@
         }
       }
     }
-}
+  }

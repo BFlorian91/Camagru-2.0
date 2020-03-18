@@ -43,7 +43,7 @@ class ViewGallery extends View
               <?php  $like = $gallery->getStyleLiked($row[0]); ?>
               <!-- LIKE !  -->
               <li class="list-inline-item">
-                <form method="post">
+                <form action="explore" method="post">
                   <input type="hidden" name="imageId" value="<?= $row[0] ?>">
                   <button type="submit" value="1" name="like" style="background-color: rgba(0,0,0,0); border: none;">
                     <i id="like" class="mt-1 fas fa-heart <?=  $like == 0 ? '' : ' text-danger' ?>">
