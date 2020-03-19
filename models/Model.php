@@ -3,12 +3,14 @@
   abstract class Model
   {
     public $message;
+    private $_db;
     protected $userId;
     protected $userName;
 
     public function __construct()
     {
       $this->message = new Tools();
+      $this->_db = null;
       $this->userId = $_SESSION['userId'];
       $this->userName = $_SESSION['username'];
     }
@@ -17,18 +19,18 @@
     {
       require 'config/database.php';
       try {
-        $db = new PDO($DB_DSN, $DB_USER, $DB_PASSWORD);
-        $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-        return $db;
+        $this->_db = new PDO($DB_DSN, $DB_USER, $DB_PASSWORD);
+        $this->_db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+        return $this->_db;
       } catch(PDOException $e) {
         echo $this->message->error($e->getMessage());
         return (-1);
       }
     }
 
-    public function checkIfUserExist($username, $db)
+    public function checkIfUserExist($username)
     {
-      $stmt = $db->prepare("SELECT `username` FROM `users` WHERE username = :username");
+      $stmt = $this->_db->prepare("SELECT `username` FROM `users` WHERE username = :username");
       $stmt->bindParam(":username", $username);
       $stmt->execute();
 
@@ -38,9 +40,9 @@
       return true;
     }
 
-    public function checkIfMailExist($mail, $db)
+    public function checkIfMailExist($mail)
     {
-      $stmt = $db->prepare("SELECT `mail` FROM `users` WHERE `mail` = :mail");
+      $stmt = $this->_db->prepare("SELECT `mail` FROM `users` WHERE `mail` = :mail");
       $stmt->bindParam("mail", $mail);
       $stmt->execute();
 
@@ -63,12 +65,12 @@
 
     public function getLikedStatus()
     {
-      $db = $this->connect();
       $imageId = filter_input(INPUT_POST, "imageId");
 
-      $stmt = $db->prepare("SELECT * FROM `like` WHERE imageId = :imageId AND userId = :userId");
+      $stmt = $this->_db->prepare("SELECT * FROM `like` WHERE imageId = :imageId AND userId = :userId");
       $stmt->bindParam(":imageId", $imageId);
       $stmt->bindParam(":userId", $this->userId);
+      $stmt->execute();
 
       while ($row = $stmt->fetch()) {
         if ($imageId == $row[2]) {

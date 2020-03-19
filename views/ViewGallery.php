@@ -6,7 +6,6 @@ class ViewGallery extends View
   {
     $gallery = new ModelGallery();
     $rows = $gallery->fetchAllImg();
-
     ?>
 <div class="container container-size full-height" id="imgFetch">
   <!-- Card -->
