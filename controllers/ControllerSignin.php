@@ -2,19 +2,16 @@
 
   class ControllerSignin extends Controller
   {
-    public static function createView()
+    public function signin()
     {
       $view = new ViewSignin();
       $action = new ModelSignin();
 
-      if (isset($_POST['username']) && isset($_POST['password'])) {
-        $username = htmlspecialchars($_POST['username']);
-        $password = htmlspecialchars($_POST['password']);
-        if ($action->signin($username, $password)) {
-          $view = new ViewGallery();
-          header('Location: explore');
-          die();
-        }
+      $username = htmlspecialchars(filter_input(INPUT_POST, "username"));
+      $password = htmlspecialchars(filter_input(INPUT_POST, "password"));
+
+      if (!(empty($username) && empty($password))) {
+        $action->signin($username, $password);
       }
       $view->build_page();
     }

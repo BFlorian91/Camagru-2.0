@@ -5,11 +5,11 @@
     });
 
     Route::set('signin', function() {
-      ControllerSignin::createView();
+      ControllerSignin::signin();
     });
     
     Route::set('signup', function() {
-      ControllerSignup::createView();
+      ControllerSignup::signup();
     });
 
     Route::set('logout', function() {
@@ -27,7 +27,7 @@
       if (trim($_SESSION['token'])) {
         ControllerGallery::userGallery();
       } else {
-        ControllerSignin::createView();
+        ControllerSignin::signin();
       }
     });
 

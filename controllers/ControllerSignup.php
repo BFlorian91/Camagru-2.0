@@ -2,23 +2,28 @@
 
   class ControllerSignup extends Controller
   {
-    public $db;
 
-    public static function createView()
+    public function __construct()
+    {
+      parent::__construct();
+    }
+
+    public function signup()
     {
       $view = new ViewSignup();
       $action = new ModelSignup();
-  
-      if (isset($_POST['username']) && isset($_POST['email']) && isset($_POST['password'])) {
-        $username = htmlspecialchars($_POST['username']);
-        $email = htmlspecialchars($_POST['email']);
-        $password = htmlspecialchars($_POST['password']);
-        $action->signup($username, $email, $password);
-        $view = new ViewGallery();
-        header('Location: explore');
-        die();
-        // $view->build_page();
-        // return true;
+
+      $username = htmlspecialchars(filter_input(INPUT_POST, "username"));
+      $password = htmlspecialchars(filter_input(INPUT_POST, "password"));
+      $mail = htmlspecialchars(filter_input(INPUT_POST, "email"));
+      
+      if (!(empty($username) && empty($mail) && empty($password))) {
+        if ($mail === false) {
+          echo $this->message->error("invalid email format !");
+          $view->build_page();
+          return false;
+        }
+        $action->signup($username, $mail, $password);
       }
       $view->build_page();
     }

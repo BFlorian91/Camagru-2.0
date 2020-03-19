@@ -2,7 +2,12 @@
 
 abstract class Controller
 {
-  
+  public $message;
+
+  public function __construct()
+  {
+    $message = new Tools();
+  }
   // public static function CreateView($viewName)
   // {
   //   $view = new $viewName();

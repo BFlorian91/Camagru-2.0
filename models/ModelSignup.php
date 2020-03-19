@@ -24,8 +24,9 @@
         $stmt->bindParam(":passwd", hash("sha512", $password));
         $stmt->bindParam(":token", hash("sha512", $username));
         $stmt->execute();
-      } else {
-        return $this->message->error("Username or Email already taken");
+        header("Location: signin");
+        return true;
       }
+      return $this->message->error("Username or Email already taken");
     }
   }

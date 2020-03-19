@@ -21,9 +21,10 @@
           $_SESSION['token'] = $datas['token'];
           $_SESSION['username'] = $datas['username'];
           $_SESSION['userId'] = $datas['id'];
+          header("Location: explore");
           return true;
         }
       }
-      return $this->message->error("Username or/and Password are invalides");
+      echo $this->message->error("Username or/and Password are invalides");
     }
   }

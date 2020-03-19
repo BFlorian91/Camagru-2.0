@@ -12,7 +12,7 @@ class ControllerGallery extends Controller
       $like = filter_input(INPUT_POST, "like");
 
       $action->fetchAllImg();
-      if (isset($imageId) && isset($like) == 1) {
+      if (!(empty($imageId) && empty($like) == 1)) {
         $action->likeGestion();
       }
       $view->build_page();
