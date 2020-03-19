@@ -13,7 +13,7 @@
     });
 
     Route::set('logout', function() {
-      ControllerLogout::createView();
+      ControllerLogout::logout();
     });
 
     Route::set('edit-account', function() {
@@ -48,7 +48,7 @@
     });
 
     Route::set('setup', function() {
-      ControllerSetup::createView();
+      ControllerSetup::setup();
     });
 
 

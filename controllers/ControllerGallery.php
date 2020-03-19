@@ -13,7 +13,8 @@ class ControllerGallery extends Controller
 
       $action->fetchAllImg();
       if (!(empty($imageId) && empty($like) == 1)) {
-        $action->likeGestion();
+        if (trim($_SESSION["token"]) != "")
+          $action->likeGestion();
       }
       $view->build_page();
     }
@@ -25,7 +26,9 @@ class ControllerGallery extends Controller
       $comment = trim(filter_input(INPUT_POST, "comment"));
 
       if (isset($comment) && $comment != "") {
-        $action->postComment();
+        if (trim($_SESSION["token"]) != "") {
+          $action->postComment();
+        }
       }
       $action->fetchComment();
       $view->build_page();

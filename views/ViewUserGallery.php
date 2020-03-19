@@ -6,9 +6,9 @@ class ViewUserGallery extends View
   { 
     $gallery = new ModelGallery();
     $rows = $gallery->fetchUserImg();
-    echo "<pre class=\"text-white\">";
-    print_r($rows);
-    echo "</pre>";
+    // echo "<pre class=\"text-white\">";
+    // print_r($rows);
+    // echo "</pre>";
     ?>
 <div class="container container-settings">
   <div class="row justify-content-md-center m-0">

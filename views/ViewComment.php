@@ -54,7 +54,15 @@
   <!-- -- -->
 
   <!-- SEND MESSAGE -->
-  <div class="mt-4 mb-4">
+  <div class="<?= trim($_SESSION['token']) == '' ? 'd-block' : 'd-none' ?> mt-4">
+    <div class="row justify-content-center">
+        <h5 class="text-center">You must be connected for send a comment</h5>
+    </div>
+    <div class="row justify-content-center">
+      <a href="signin" class="btn btn-info">Connect</a>
+    </div>
+  </div>
+  <div class="<?= trim($_SESSION['token']) != '' ? 'd-block' : 'd-none' ?> mb-4 mt-4"> 
     <form method="post">
       <input type="hidden" name="imageId" value="<?= $image[0][0] ?>">
       <textarea type="text" id="message" name="comment" rows="4" 

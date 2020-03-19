@@ -2,7 +2,7 @@
 
   class ControllerSetup extends Controller
   {
-    public function createView()
+    public function setup()
     {
       $view = new ViewInstall();
       $view->build_page();

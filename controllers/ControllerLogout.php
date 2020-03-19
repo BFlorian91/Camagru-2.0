@@ -1,7 +1,7 @@
 <?php
 class ControllerLogout extends Controller
 {
-  public function createView()
+  public function logout()
   {
     $view = new ViewGallery();
     if (trim($_SESSION['token'])) {
