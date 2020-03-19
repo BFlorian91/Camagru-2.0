@@ -57,4 +57,16 @@
       $stmt->bindParam(":userId", $this->userId);
       $stmt->execute();
     }
+
+    public function imgHistory()
+    {
+      $stmt = $this->_db->prepare(" (SELECT * FROM gallery WHERE userId = :userId ORDER BY id DESC ) LIMIT 4");
+      $stmt->bindParam(":userId", $this->userId);
+      $stmt->execute();
+      
+      while ($row = $stmt->fetch()) {
+        $rows[] = $row;
+      }
+      return $rows;
+    }
   }

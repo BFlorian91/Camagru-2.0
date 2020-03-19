@@ -3,6 +3,15 @@
 class ViewMontage extends View
 {
 
+  private $_gallery;
+  private $_image;
+
+  public function __construct()
+  {
+    $this->_gallery = new ModelMontage();
+    $this->_image = $this->_gallery->imgHistory();
+  }
+
   public function body()
   { ?>
     <div class="container container-settings">
@@ -48,6 +57,24 @@ class ViewMontage extends View
         <button type="button" class="btn rounded mr-3"><img width="30px" src="/lib/img/filters/rick.png" alt="rick"></button>
       </div>
           <!-- <canvas id="canvas" class="col-12"></canvas> -->
+          <div>
+          <hr>
+          <div class="row justify-content-center">
+            <h2 class="mb-4 font-poppins">Previous photo's</h2>
+          </div>
+          <div class="row justify-content-center">
+            <?php foreach($this->_image as $image) : ?>
+                <img 
+                  class="ml-2 mb-2"
+                  style="object-fit: cover"
+                  width="160"
+                  height="120"
+                  alt="Card image"
+                  src="<?= $image[1] ?>"
+                >
+            <?php endforeach; ?>
+          </div>
+          </div>
     </div>
     <script src="/lib/javascript/camera.js"></script>
     <script src="/lib/javascript/toggle.js"></script>
