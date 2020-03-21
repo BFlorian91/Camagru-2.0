@@ -36,6 +36,7 @@ class ViewGallery extends View
                         <input type="hidden" name="imageId" value="<?= $row[0] ?>">
                         <button type="submit" style="background-color: rgba(0,0,0,0); border: none;">
                           <i class="far fa-comments text-info"></i>
+                          <p class="commentCount text-white"></p>
                         </button>
                         <?= $gallery->getNbComment($row[0]); ?>
                       </form>

@@ -2,7 +2,8 @@
 
 class ControllerGallery extends Controller
 {
-    public static function createView()
+
+    public function createView()
     {
         $view = new ViewGallery();
         $action = new ModelGallery();
@@ -29,9 +30,7 @@ class ControllerGallery extends Controller
 
         $datas = $action->getLikeStatus();
         echo json_encode($datas);
-        // header("Location: explore");
-        // var_dump(json_encode($datas));
-        // echo json_encode("13");
+
         return true;
     }
 
@@ -48,6 +47,11 @@ class ControllerGallery extends Controller
         }
         $action->fetchComment();
         $view->build_page();
+    }
+
+    public function getNbComment()
+    {
+
     }
 
     public function userGallery()
