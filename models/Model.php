@@ -66,7 +66,6 @@
     public function getLikedStatus()
     {
       $imageId = filter_input(INPUT_POST, "imageId");
-
       $stmt = $this->_db->prepare("SELECT * FROM `like` WHERE imageId = :imageId AND userId = :userId");
       $stmt->bindParam(":imageId", $imageId);
       $stmt->bindParam(":userId", $this->userId);
@@ -78,4 +77,37 @@
         }
       }
     }
+
+    public function getLikeStatus()
+    {
+      // REQUEST ALL IMGID
+      $stmt = $this->_db->prepare("SELECT id FROM gallery ORDER BY id DESC");
+      $stmt->execute();
+
+      $imageId = $stmt->fetchAll();
+
+      foreach ($imageId as $imgId) {
+        // REQUEST NUMBER OF LIKE PER IMG
+        $stmt = $this->_db->prepare("SELECT * FROM `like` WHERE imageId = :imageId");
+        $stmt->bindParam(":imageId", $imgId[0]);
+        $stmt->execute();
+        
+        $nbLike = 0;
+        while ($rows = $stmt->fetch()) {
+          if ($rows[3])
+            $nbLike++;
+        }
+        $row[] = $nbLike;
+        
+        // REQUEST IF USER LIKE IT
+        $stmt = $this->_db->prepare("SELECT * FROM `like` WHERE imageId = :imageId AND userId = :userId");
+        $stmt->bindParam(":imageId", $imgId[0]);
+        $stmt->bindParam(":userId", $this->userId);
+        $stmt->execute();
+        
+        $liked = $stmt->fetchAll();
+        $row[] = $liked[0][3];
+      }
+        return $row;
+      }
   }
