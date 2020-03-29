@@ -32,7 +32,7 @@
     });
 
     Route::set('comments', function () {
-        ControllerGallery::commentsPage();
+        ControllerComments::commentsPage();
     });
 
     Route::set('personal-montage', function () {
@@ -51,18 +51,20 @@
         ControllerSetup::setup();
     });
 
+
+
     // // ----- API ----- //
 
     Route::set('getLikeStatus', function() {
       ControllerGallery::getLikeStatus();
     });
 
-    // Route::set('getAllImg', function() {
-    //   ControllerGallery::getAllImg();
-    // });
+    Route::set('getNbComments', function() {
+        ControllerGallery::getNbComments();
+    });
 
-    // Route::set('getUserImg', function() {
-    //   ControllerGallery::getUserImg();
-    // });
+    Route::set('datas_camagru', function() {
+        ControllerGallery::getDatas();
+    });
 
     // // --------------------- //

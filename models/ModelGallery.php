@@ -109,76 +109,82 @@
 
               return $nbLike;
           }
-          $stmt = $this->_db->prepare('SELECT * FROM `like` WHERE liked = 1');
+          //   $stmt = $this->_db->prepare('SELECT * FROM `like` WHERE liked = 1');
+        //   $stmt->execute();
+
+        //   $nbLike = 0;
+        //   while ($stmt->fetch()) {
+        //       $nbLike++;
+        //   }
+        //   return $nbLike;
+      }
+
+      public function getLikedStatus()
+      {
+          $imageId = filter_input(INPUT_POST, 'imageId');
+          $stmt = $this->_db->prepare('SELECT * FROM `like` WHERE imageId = :imageId AND userId = :userId');
+          $stmt->bindParam(':imageId', $imageId);
+          $stmt->bindParam(':userId', $this->userId);
           $stmt->execute();
 
-          $nbLike = 0;
-          while ($stmt->fetch()) {
-              $nbLike++;
+          while ($row = $stmt->fetch()) {
+              if ($imageId == $row[2]) {
+                  return $row[3];
+              }
           }
-          return $nbLike;
+      }
+
+      public function getLikeStatus()
+      {
+          $imageId = $this->getImagesID();
+
+          foreach ($imageId as $imgId) {
+              // REQUEST NUMBER OF LIKE PER IMG
+              $stmt = $this->_db->prepare('SELECT * FROM `like` WHERE imageId = :imageId');
+              $stmt->bindParam(':imageId', $imgId[0]);
+              $stmt->execute();
+
+              $nbLike = 0;
+              while ($rows = $stmt->fetch()) {
+                  if ($rows[3]) {
+                      $nbLike++;
+                  }
+              }
+              $row["nbOfLike"][] = $nbLike;
+
+              // REQUEST IF USER LIKE IT
+              try {
+                  $stmt = $this->_db->prepare('SELECT * FROM `like` WHERE imageId = :imageId AND userId = :userId');
+                  $stmt->bindParam(':imageId', $imgId[0]);
+                  $stmt->bindParam(':userId', $this->userId);
+                  $stmt->execute();
+                  
+                  $liked = $stmt->fetchAll();
+                  $row["liked"][] = $liked[0][3];
+              } catch(Throwable $e) {
+                echo "Error " . $e ;
+              }
+          }
+          return $row;
       }
 
       // COMMENT //
 
-      public function fetchCommentImage()
+      public function getNbComments()
       {
-          $stmt = $this->_db->prepare('SELECT * FROM gallery WHERE id = :imageId');
-          $stmt->bindParam(':imageId', filter_input(INPUT_POST, 'imageId'));
-          $stmt->execute();
+          $imagesId = $this->getImagesID();
+          foreach ($imagesId as $imgId) {
+              $stmt = $this->_db->prepare('SELECT * FROM comment WHERE imageId = :imageId');
+              $stmt->bindParam(':imageId', $imgId[0]);
+              $stmt->execute();
+              $nbComment = 0;
 
-          while ($row = $stmt->fetch()) {
-              $rows[] = $row;
-          }
-
-          return $rows;
-      }
-
-      public function getNbComment($imageId)
-      {
-          $stmt = $this->_db->prepare('SELECT * FROM comment WHERE imageId = :imageId');
-          $stmt->bindParam(':imageId', $imageId);
-          $stmt->execute();
-          $nbComment = 0;
-
-          while ($stmt->fetch()) {
-              $nbComment++;
-          }
-
-          return $nbComment;
-      }
-
-      public function postComment()
-      {
-          $stmt = $this->_db->prepare('INSERT INTO comment(userId, imageId, comment) VALUE(:userId, :imageId, :comment)');
-          $stmt->bindParam(':userId', $this->userId);
-          $stmt->bindParam(':imageId', filter_input(INPUT_POST, 'imageId'));
-          $stmt->bindParam(':comment', filter_input(INPUT_POST, 'comment'));
-          $stmt->execute();
-      }
-
-      public function fetchComment()
-      {
-          $stmt = $this->_db->prepare('SELECT * FROM comment WHERE imageId = :imageId ORDER BY id DESC');
-          $stmt->bindParam(':imageId', filter_input(INPUT_POST, 'imageId'));
-          $stmt->execute();
-          while ($row = $stmt->fetch()) {
-              $rows[] = $row;
-          }
-
-          return $rows;
-      }
-
-      public function fetchUsername($userId)
-      {
-          $stmt = $this->_db->prepare('SELECT * FROM users');
-          $stmt->execute();
-          $users = $stmt->fetchALL();
-
-          foreach ($users as $user) {
-              if ($user[0] == $userId) {
-                  return $user[1];
+              while ($stmt->fetch()) {
+                  $nbComment++;
               }
+              $rows[] = $nbComment;
           }
+
+          return $rows;
       }
   }

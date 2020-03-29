@@ -4,7 +4,7 @@ class ViewComment extends View
 {
   function body()
   {
-    $comment = new ModelGallery();
+    $comment = new ModelComments();
     $messages = $comment->fetchComment();
     $image = $comment->fetchCommentImage();
     // echo "<pre class=\"text-white\">";

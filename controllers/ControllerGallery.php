@@ -2,7 +2,6 @@
 
 class ControllerGallery extends Controller
 {
-
     public function createView()
     {
         $view = new ViewGallery();
@@ -11,7 +10,6 @@ class ControllerGallery extends Controller
         $imageId = filter_input(INPUT_POST, 'imageId');
         $like = filter_input(INPUT_POST, 'like');
 
-        $action->fetchAllImg();
         if (! (empty($imageId) && empty($like) == 1)) {
             if (trim($_SESSION['token']) != '') {
                 $datas = $action->likeGestion();
@@ -34,24 +32,23 @@ class ControllerGallery extends Controller
         return true;
     }
 
-    public function commentsPage()
+    public function getNbComments()
     {
-        $view = new ViewComment();
         $action = new ModelGallery();
-        $comment = trim(filter_input(INPUT_POST, 'comment'));
 
-        if (isset($comment) && $comment != '') {
-            if (trim($_SESSION['token']) != '') {
-                $action->postComment();
-            }
-        }
-        $action->fetchComment();
-        $view->build_page();
+        $datas = $action->getNbComments();
+        echo json_encode($datas);
+
+        return true;
     }
 
-    public function getNbComment()
+    public function getDatas()
     {
+        $action = new GetDatas();
+     
+        $action->fetchDatas();
 
+        return true;
     }
 
     public function userGallery()
