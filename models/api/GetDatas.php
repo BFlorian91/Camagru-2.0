@@ -50,7 +50,7 @@
         public function getNbLike($imgId)
         {
             try {
-                $stmt = $this->_db->prepare('SELECT * FROM `like` WHERE imageId = :imageId AND liked = 1');
+                $stmt = $this->_db->prepare('SELECT * FROM `like` WHERE imageId LIKE :imageId AND liked LIKE 1');
                 $stmt->bindParam(':imageId', $imgId);
                 $stmt->execute();
 
@@ -68,7 +68,7 @@
         public function getLikedStatus($imgId)
         {
             try {
-                $stmt = $this->_db->prepare('SELECT * FROM `like` WHERE imageId = :imageId AND userId = :userId');
+                $stmt = $this->_db->prepare('SELECT * FROM `like` WHERE imageId LIKE :imageId AND userId LIKE :userId');
                 $stmt->bindParam(':imageId', $imgId);
                 $stmt->bindParam(':userId', $this->userId);
                 $stmt->execute();
