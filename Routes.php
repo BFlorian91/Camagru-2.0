@@ -67,4 +67,8 @@
         ControllerGallery::getDatas();
     });
 
+    Route::set('getCommentImg', function() {
+        ControllerComments::commentsImg();
+    });
+
     // // --------------------- //

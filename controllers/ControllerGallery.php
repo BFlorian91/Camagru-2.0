@@ -8,6 +8,7 @@ class ControllerGallery extends Controller
         $action = new ModelGallery();
 
         $imageId = filter_input(INPUT_POST, 'imageId');
+        $imageCommentedId = filter_input(INPUT_POST, 'imageCommentedId');
         $like = filter_input(INPUT_POST, 'like');
 
         if (! (empty($imageId) && empty($like) == 1)) {
@@ -18,8 +19,23 @@ class ControllerGallery extends Controller
                 return true;
             }
         }
+        if (! (empty($imageCommentedId)) ) {
+            header("Location: comments?imgId=" . $imageCommentedId);
+        }
 
         $view->build_page();
+    }
+
+    public function commentsImg($imageId)
+    {
+        die("hello world");
+        die($imageId);
+
+        $action = new ModelComments();
+        if (isset($imageId) && $imageId != "") {
+            $datas = $action->fetchCommentImage($imageId);
+            echo json_encode($datas);
+         }
     }
 
     public function getLikeStatus()

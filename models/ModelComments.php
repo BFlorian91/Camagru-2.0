@@ -9,11 +9,12 @@ class ModelComments extends Model
         $this->_db = $this->connect();
     }
 
-    public function fetchCommentImage()
+    public function fetchCommentImage($imageId)
     {
+        // var_dump($imageId);
         try {
             $stmt = $this->_db->prepare('SELECT id, img, imgDate FROM gallery WHERE id LIKE :imgId');
-            $stmt->bindParam(":imgId", filter_input(INPUT_POST, 'imageId'));
+            $stmt->bindParam(":imgId", $imageId);
             $stmt->execute();
             while ($row = $stmt->fetch()) {
                 $rows[] = $row;

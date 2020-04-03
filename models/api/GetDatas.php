@@ -34,14 +34,38 @@
             return $datas;
         }
 
+        public function getUsername($userId)
+        {
+            try {
+                $stmt = $this->_db->prepare('SELECT * FROM users WHERE id LIKE :userId');
+                $stmt->bindParam(":userId", $userId);
+                $stmt->execute();
+
+                while ($rows = $stmt->fetch()) {
+                    $username = $rows[1];
+                }
+                return $username;
+            } catch(Throwable $e) {
+                echo $this->message->error($e);
+            }
+        }
+
         public function getComments($imgId)
         {
             try {
-                $stmt = $this->_db->prepare('SELECT comment FROM comment WHERE imageId LIKE :imageId ORDER BY id DESC');
+                $stmt = $this->_db->prepare('SELECT comment, userId FROM comment WHERE imageId LIKE :imageId ORDER BY id DESC');
                 $stmt->bindParam(':imageId', $imgId);
                 $stmt->execute();
 
-                $datas['comment'] = $stmt->fetchAll();
+                // $datas['comment'] = $stmt->fetchAll();
+                while ($rows = $stmt->fetch()) {
+                    $datas['comments']['comment'][] = $rows;
+                    // var_dump($rows);
+                    $datas['comments']['user'][] = $this->getUsername($rows[1]);
+                }
+                // var_dump($datas['comment']);
+                // die();
+                // $datas['comment']['user'] = $this->getUsername($datas['comment'][1]);
                 $datas['numberOfComments'] = count($datas['comment']);
             } catch (Throwable $e) {
                 echo $this->message->error($e);
@@ -96,6 +120,7 @@
 
                     // IMAGE REQUEST
                     $imageDatas = $this->getImg($imgId[0]);
+                    $datas['id'][] = $imageDatas[0][0];
                     $datas['images'][] = $imageDatas[0][1];
                     $datas['date'][] = $imageDatas[0][3];
                     $datas['ownerOfImages'][] = $imageDatas[0][5];

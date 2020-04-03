@@ -40,11 +40,10 @@ class ViewGallery extends View
 
                                 <!-- COMMENT -->
                                 <div class="col-3">
-
                                     <li class="list-inline-item">
                                         <div class="row justify-content-center">
-                                        <form action="comments" method="POST">
-                                            <input type="hidden" name="imageId" value="<?= $row[0] ?>">
+                                        <form action="explore" method="POST" class="commentForm">
+                                            <input type="hidden" name="imageCommentedId" value="<?= $row[0] ?>">
                                             <button type="submit" style="background-color: rgba(0,0,0,0); border: none">
                                                     <i class="far fa-comments mr-2 text-info"></i>
                                                 </button>
