@@ -54,11 +54,9 @@ class ViewComment extends View
 
       <!-- DISPLAY MESSAGES -->
       <div class="">
-
-          <h4 class="authorMsg"></h4>
           <div class="card mb-2 rounded msgBox">
             <div class="card-body bg-dark text-white">
-              <h4 class="card-title msgAuthor"><?= $user ?></h4>
+              <h4 class="card-title msgAuthor"></h4>
               <p class="card-text msg"></p>
             </div>
           </div>

@@ -57,15 +57,10 @@
                 $stmt->bindParam(':imageId', $imgId);
                 $stmt->execute();
 
-                // $datas['comment'] = $stmt->fetchAll();
                 while ($rows = $stmt->fetch()) {
-                    $datas['comments']['comment'][] = $rows;
-                    // var_dump($rows);
-                    $datas['comments']['user'][] = $this->getUsername($rows[1]);
+                    $datas['comment'][] = $rows;
+                    $datas['authorMsg'][] = $this->getUsername($rows[1]);
                 }
-                // var_dump($datas['comment']);
-                // die();
-                // $datas['comment']['user'] = $this->getUsername($datas['comment'][1]);
                 $datas['numberOfComments'] = count($datas['comment']);
             } catch (Throwable $e) {
                 echo $this->message->error($e);
@@ -123,7 +118,7 @@
                     $datas['id'][] = $imageDatas[0][0];
                     $datas['images'][] = $imageDatas[0][1];
                     $datas['date'][] = $imageDatas[0][3];
-                    $datas['ownerOfImages'][] = $imageDatas[0][5];
+                    $datas['authorsImages'][] = $imageDatas[0][5];
                     $datas['numberOfImages'] = $imageDatas[1];
 
                     // COMMENTS REQUEST
