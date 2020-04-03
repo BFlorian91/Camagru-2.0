@@ -9,6 +9,7 @@ class ViewGallery extends View
 ?>
 <div class="container container-size full-height">
     <!-- Card -->
+    <div id="container"></div>
     <?php foreach ($rows as $row) : ?>
     <div class="col gallery">
         <div class="row justify-content-center">

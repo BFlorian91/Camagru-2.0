@@ -42,11 +42,11 @@ class ViewComment extends View
       <!-- DISPLAY MESSAGES -->
       <div class="">
         <?php foreach ($messages as $message) : ?>
-          <?php $user = $comment->fetchUsername($message[1]); ?>
-          <div class="card mb-2 rounded">
+          <?php //$user = $comment->fetchUsername($message[1]); ?>
+          <div class="card mb-2 rounded msgBox">
             <div class="card-body bg-dark text-white">
-              <h4 class="card-title"><?= $user ?></h4>
-              <p class="card-text"><?= $message[3] ?></p>
+              <h4 class="card-title msgAuthor"><?= $user ?></h4>
+              <p class="card-text msg"></p>
             </div>
           </div>
         <?php endforeach; ?>
@@ -62,6 +62,8 @@ class ViewComment extends View
           <a href="signin" class="btn btn-info">Connect</a>
         </div>
       </div>
+
+      <!-- MESSAGE BOX -->
       <div class="<?= trim($_SESSION['token']) != '' ? 'd-block' : 'd-none' ?> mb-4 mt-4">
         <form method="post">
           <input type="hidden" name="imageId" value="<?= $image[0][0] ?>">
@@ -71,7 +73,7 @@ class ViewComment extends View
       </div>
       <div style="height: 50px"></div>
       <!-- -- -->
-
+        <script src="/lib/javascript/comments.js"></script>
     </div>
 <?php
   }

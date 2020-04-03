@@ -12,8 +12,6 @@
     
             if (isset($imageId) && $imageId != "") {
                $img = $action->fetchCommentImage();
-               echo json_encode($img[0][1]) . "</br>";
-               echo json_encode($img[0][3]);
             }
     
             if (isset($comment) && $comment != '') {

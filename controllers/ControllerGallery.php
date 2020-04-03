@@ -46,7 +46,7 @@ class ControllerGallery extends Controller
     {
         $action = new GetDatas();
      
-        $action->fetchDatas();
+        $action->datasArchitecture();
 
         return true;
     }

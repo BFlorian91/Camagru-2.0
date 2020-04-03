@@ -81,19 +81,19 @@
           return $datas;
       }
 
-      public function getStyleLiked($imgId)
-      {
-          $stmt = $this->_db->prepare('SELECT * FROM `like` WHERE imageId = :imageId AND userId = :userId');
-          $stmt->bindParam(':imageId', $imgId);
-          $stmt->bindParam(':userId', $this->userId);
-          $stmt->execute();
+    //   public function getStyleLiked($imgId)
+    //   {
+    //       $stmt = $this->_db->prepare('SELECT * FROM `like` WHERE imageId = :imageId AND userId = :userId');
+    //       $stmt->bindParam(':imageId', $imgId);
+    //       $stmt->bindParam(':userId', $this->userId);
+    //       $stmt->execute();
 
-          while ($row = $stmt->fetch()) {
-              if ($imgId == $row[2]) {
-                  return $row[3];
-              }
-          }
-      }
+    //       while ($row = $stmt->fetch()) {
+    //           if ($imgId == $row[2]) {
+    //               return $row[3];
+    //           }
+    //       }
+    //   }
 
       public function getNbLike($imgId = null)
       {

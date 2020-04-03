@@ -2,13 +2,24 @@
 
 class ModelComments extends Model
 {
+
+    public function __construct()
+    {
+        parent::__construct();
+        $this->_db = $this->connect();
+    }
+
     public function fetchCommentImage()
     {
-        $stmt = $this->_db->prepare('SELECT * FROM gallery WHERE id = :imageId');
-        $stmt->bindParam(':imageId', filter_input(INPUT_POST, 'imageId'));
-        $stmt->execute();
-        while ($row = $stmt->fetch()) {
-            $rows[] = $row;
+        try {
+            $stmt = $this->_db->prepare('SELECT id, img, imgDate FROM gallery WHERE id LIKE :imgId');
+            $stmt->bindParam(":imgId", filter_input(INPUT_POST, 'imageId'));
+            $stmt->execute();
+            while ($row = $stmt->fetch()) {
+                $rows[] = $row;
+            }
+        } catch (Throwable $e) {
+            return $this->message->error($e);
         }
 
         return $rows;
@@ -35,16 +46,16 @@ class ModelComments extends Model
         return $rows;
     }
 
-    public function fetchUsername($userId)
-    {
-        $stmt = $this->_db->prepare('SELECT * FROM users');
-        $stmt->execute();
-        $users = $stmt->fetchALL();
+    // public function fetchUsername($userId)
+    // {
+    //     $stmt = $this->_db->prepare('SELECT * FROM users');
+    //     $stmt->execute();
+    //     $users = $stmt->fetchALL();
 
-        foreach ($users as $user) {
-            if ($user[0] == $userId) {
-                return $user[1];
-            }
-        }
-    }
+    //     foreach ($users as $user) {
+    //         if ($user[0] == $userId) {
+    //             return $user[1];
+    //         }
+    //     }
+    // }
 }

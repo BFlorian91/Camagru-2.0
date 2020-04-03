@@ -10,11 +10,14 @@
             $this->_db = $this->connect();
         }
 
-        public function getAllImg($imgId)
+        public function getImg($imgId)
         {
             try {
-                $stmt = $this->_db->prepare('SELECT id, img, imgDate FROM gallery WHERE id LIKE :imgId');
-                $stmt->bindParam(":imgId", $imgId);
+                $sql = 'SELECT * FROM gallery
+                        INNER JOIN users ON gallery.userId = users.id
+                        WHERE gallery.id LIKE :imgId';
+                $stmt = $this->_db->prepare($sql);
+                $stmt->bindParam(':imgId', $imgId);
                 $stmt->execute();
 
                 for ($i = 0; $i < count($this->getImagesID()); $i++) {
@@ -25,7 +28,7 @@
                 $datas = $stmt->fetchAll();
                 $datas[] = $numberOfImages;
             } catch (Throwable $e) {
-                echo $this->message->success($e);
+                echo $this->message->error($e);
             }
 
             return $datas;
@@ -34,14 +37,14 @@
         public function getComments($imgId)
         {
             try {
-                $stmt = $this->_db->prepare('SELECT comment FROM comment WHERE imageId LIKE :imageId');
+                $stmt = $this->_db->prepare('SELECT comment FROM comment WHERE imageId LIKE :imageId ORDER BY id DESC');
                 $stmt->bindParam(':imageId', $imgId);
                 $stmt->execute();
 
                 $datas['comment'] = $stmt->fetchAll();
                 $datas['numberOfComments'] = count($datas['comment']);
             } catch (Throwable $e) {
-                echo $this->message->success($e);
+                echo $this->message->error($e);
             }
 
             return $datas;
@@ -59,7 +62,7 @@
                     $nbLike++;
                 }
             } catch (Throwable $e) {
-                echo $this->message->success($e);
+                echo $this->message->error($e);
             }
 
             return $nbLike;
@@ -79,11 +82,11 @@
                     }
                 }
             } catch (Throwable $e) {
-                echo $this->message->success($e);
+                echo $this->message->error($e);
             }
         }
 
-        public function fetchDatas()
+        public function datasArchitecture()
         {
             $imageId = $this->getImagesID();
             $datas = [];
@@ -92,9 +95,10 @@
                 foreach ($imageId as $imgId) {
 
                     // IMAGE REQUEST
-                    $imageDatas = $this->getAllImg($imgId[0]);
+                    $imageDatas = $this->getImg($imgId[0]);
                     $datas['images'][] = $imageDatas[0][1];
-                    $datas['date'][] = $imageDatas[0][2];
+                    $datas['date'][] = $imageDatas[0][3];
+                    $datas['ownerOfImages'][] = $imageDatas[0][5];
                     $datas['numberOfImages'] = $imageDatas[1];
 
                     // COMMENTS REQUEST
@@ -107,7 +111,9 @@
                     // LIKED STATUS REQUEST
                     if ($this->userIsConnected) {
                         $datas['likesStatus'][] = $this->getLikedStatus($imgId[0]);
+                        $datas['userIsConnected'] = 1;
                     }
+                    $datas['userIsConnected'] = 0;
                 }
 
                 $this->responseJson('success', 'request is done', $datas);
