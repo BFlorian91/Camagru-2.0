@@ -26,17 +26,17 @@ class ControllerGallery extends Controller
         $view->build_page();
     }
 
-    public function commentsImg($imageId)
-    {
-        die("hello world");
-        die($imageId);
+    // public function commentsImg($imageId)
+    // {
+    //     die("hello world");
+    //     die($imageId);
 
-        $action = new ModelComments();
-        if (isset($imageId) && $imageId != "") {
-            $datas = $action->fetchCommentImage($imageId);
-            echo json_encode($datas);
-         }
-    }
+    //     $action = new ModelComments();
+    //     if (isset($imageId) && $imageId != "") {
+    //         $datas = $action->fetchCommentImage($imageId);
+    //         echo json_encode($datas);
+    //      }
+    // }
 
     public function getLikeStatus()
     {

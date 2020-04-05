@@ -17,6 +17,15 @@
             $view->build_page();
         }
 
+        public function getComments()
+        {
+            $action = new GetComments();
+
+            $action->getComments(filter_input(INPUT_GET, "imgId"));
+            
+            return true;
+        }
+
         // public function commentsImg()
         // {
         //     $action = new ModelComments();
