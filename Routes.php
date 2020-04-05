@@ -67,8 +67,8 @@
         ControllerGallery::getDatas();
     });
 
-    Route::set('getComments', function() {
-        ControllerComments::getComments();
+    Route::set('api_comments', function() {
+        ControllerComments::middlewareCOmments();
     });
 
     // // --------------------- //

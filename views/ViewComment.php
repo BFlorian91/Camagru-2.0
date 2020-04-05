@@ -4,18 +4,11 @@ class ViewComment extends View
 {
   function body()
   {
-    $comment = new ModelComments();
-    $messages = $comment->fetchComment();
-    // $image = $comment->fetchCommentImage();
-    // echo "<pre class=\"text-white\">";
-    //     print_r($messages);
-    //   echo "</br>";
-    // echo "</pre>";
 ?>
 <div class="container container-size full-height">
 
   <!-- IMAGE -->
-  <div class="col">
+  <div class="col mb-4">
     <div class="row justify-content-center">
       <div class="col row justify-content-center">
         <div class=" pl-0 pr-0 mb-4 border border-info" style="max-width: 500px; box-shadow: 6px 6px 6px black;">
@@ -40,7 +33,7 @@ class ViewComment extends View
                 <!-- USER -->
                 <div class="col-6">
                   <li class="list-inline-item white-text">
-                    <i class="text-white fas fa-user icon-effect text-info mr-2" style="font-size: 15px;"></i><span class="font-roboto" id="imgAuthor"></span></p>
+                    <i class="text-white fas fa-user text-info mr-2" style="font-size: 15px;"></i><span class="font-roboto" id="imgAuthor"></span></p>
                   </li>
                 </div>
               </div>
@@ -70,11 +63,11 @@ class ViewComment extends View
 
   <!-- MESSAGE BOX -->
   <div class="<?= trim($_SESSION['token']) != '' ? 'd-block' : 'd-none' ?> mb-4 mt-4">
-    <form method="post">
-      <input type="hidden" name="imageId" value="<?php // $image[0][0] ?>">
+    <form action="" method="post" id="commentForm">
+      <input type="hidden" name="imageId" value="">
       <textarea type="text" id="message" name="comment" rows="4" style="resize: none" placeholder="Your message..."
         maxlength="255" class="form-control md-textarea bg-dark text-white border-dark"></textarea>
-      <input type="submit" class="btn btn-info rounded mt-2 float-right" value="send">
+      <input type="submit" class="btn btn-info rounded mt-3 float-right" value="send">
     </form>
   </div>
   <div style="height: 50px"></div>

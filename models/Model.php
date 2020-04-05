@@ -90,4 +90,20 @@
 
           echo json_encode($array);
       }
+
+      public function getUsername($userId)
+      {
+          try {
+              $stmt = $this->_db->prepare('SELECT * FROM users WHERE id LIKE :userId');
+              $stmt->bindParam(":userId", $userId);
+              $stmt->execute();
+
+              while ($rows = $stmt->fetch()) {
+                  $username = $rows[1];
+              }
+              return $username;
+          } catch(Throwable $e) {
+              echo $this->message->error($e);
+          }
+      }
   }

@@ -20,5 +20,5 @@ spl_autoload_register(function ($class_name) {
 });
 
 require_once 'models/api/GetDatas.php';
-require_once 'models/api/GetComment.php';
+require_once 'models/api/Comments.php';
 require_once 'Routes.php';

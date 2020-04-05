@@ -5,35 +5,27 @@
         public function commentsPage()
         {
             $view = new ViewComment();
-            $action = new ModelComments();
-            $comment = trim(filter_input(INPUT_POST, 'comment'));
-    
-            if (isset($comment) && $comment != '') {
-                if (trim($_SESSION['token']) != '') {
-                    $action->postComment();
-                }
-            }
-            $action->fetchComment();
+
             $view->build_page();
         }
 
-        public function getComments()
+        function middlewareComments()
         {
-            $action = new GetComments();
+            $action = new Comments();
+            $requestType = filter_input(INPUT_GET, "req");
+            $imgId = filter_input(INPUT_GET, "imgId");
 
-            $action->getComments(filter_input(INPUT_GET, "imgId"));
-            
-            return true;
+            if ($requestType == 'get') {
+                $option = filter_input(INPUT_GET, "option");
+                $action->get($imgId, $option);
+
+                return true;
+            } else if ($requestType == 'post') {
+                $comment = filter_input(INPUT_POST, "comment");
+                var_dump($imgId, $comment);
+                $action->post(filter_input(INPUT_GET, "imgId"), $comment);
+
+                return true;
+            }
         }
-
-        // public function commentsImg()
-        // {
-        //     $action = new ModelComments();
-        //     $imageId = filter_input(INPUT_POST, "imageId");
-
-        //     if (isset($imageId) && $imageId != "") {
-        //         $datas = json_encode($action->fetchCommentImage($imageId));
-        //         echo json_encode($datas);
-        //      }
-        // }
     }
