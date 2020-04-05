@@ -40,7 +40,7 @@ class ViewComment extends View
                 <!-- USER -->
                 <div class="col-6">
                   <li class="list-inline-item white-text">
-                    <p class="font-poppins">Author: <span class="font-italic font-roboto" id="imgAuthor"></span></p>
+                    <i class="text-white fas fa-user icon-effect text-info mr-2" style="font-size: 15px;"></i><span class="font-roboto" id="imgAuthor"></span></p>
                   </li>
                 </div>
               </div>
