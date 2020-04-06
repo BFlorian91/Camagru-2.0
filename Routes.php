@@ -68,7 +68,7 @@
     });
 
     Route::set('api_comments', function() {
-        ControllerComments::middlewareCOmments();
+        ControllerComments::middlewareComments();
     });
 
     // // --------------------- //

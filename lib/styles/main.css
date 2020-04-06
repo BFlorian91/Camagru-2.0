@@ -28,6 +28,11 @@ footer {
   background-color: rgba(0, 200, 255, 0.1);
 }
 
+#alert {
+  opacity: 1;
+  transition: 1s opacity;
+}
+
 .full-height {
   min-height: 100%;
 }

@@ -9,6 +9,7 @@ class ControllerLogout extends Controller
       $_SESSION['username'] = "";
       $_SESSION['mailNotif'] = "";
       session_destroy();
+      header("Location: explore");
     }
     $view->build_page();
   }

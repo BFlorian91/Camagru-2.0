@@ -8,6 +8,7 @@ class ViewGallery extends View
     $rows = $gallery->fetchAllImg();
 ?>
 <div class="container container-size full-height">
+<div id="alert"></div>
     <!-- Card -->
     <div id="container"></div>
     <?php foreach ($rows as $row) : ?>

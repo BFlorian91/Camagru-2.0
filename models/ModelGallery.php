@@ -134,57 +134,57 @@
           }
       }
 
-      public function getLikeStatus()
-      {
-          $imageId = $this->getImagesID();
+    //   public function getLikeStatus()
+    //   {
+    //       $imageId = $this->getImagesID();
 
-          foreach ($imageId as $imgId) {
-              // REQUEST NUMBER OF LIKE PER IMG
-              $stmt = $this->_db->prepare('SELECT * FROM `like` WHERE imageId = :imageId');
-              $stmt->bindParam(':imageId', $imgId[0]);
-              $stmt->execute();
+    //       foreach ($imageId as $imgId) {
+    //           // REQUEST NUMBER OF LIKE PER IMG
+    //           $stmt = $this->_db->prepare('SELECT * FROM `like` WHERE imageId = :imageId');
+    //           $stmt->bindParam(':imageId', $imgId[0]);
+    //           $stmt->execute();
 
-              $nbLike = 0;
-              while ($rows = $stmt->fetch()) {
-                  if ($rows[3]) {
-                      $nbLike++;
-                  }
-              }
-              $row["nbOfLike"][] = $nbLike;
+    //           $nbLike = 0;
+    //           while ($rows = $stmt->fetch()) {
+    //               if ($rows[3]) {
+    //                   $nbLike++;
+    //               }
+    //           }
+    //           $row["nbOfLike"][] = $nbLike;
 
-              // REQUEST IF USER LIKE IT
-              try {
-                  $stmt = $this->_db->prepare('SELECT * FROM `like` WHERE imageId = :imageId AND userId = :userId');
-                  $stmt->bindParam(':imageId', $imgId[0]);
-                  $stmt->bindParam(':userId', $this->userId);
-                  $stmt->execute();
+    //           // REQUEST IF USER LIKE IT
+    //           try {
+    //               $stmt = $this->_db->prepare('SELECT * FROM `like` WHERE imageId = :imageId AND userId = :userId');
+    //               $stmt->bindParam(':imageId', $imgId[0]);
+    //               $stmt->bindParam(':userId', $this->userId);
+    //               $stmt->execute();
                   
-                  $liked = $stmt->fetchAll();
-                  $row["liked"][] = $liked[0][3];
-              } catch(Throwable $e) {
-                echo "Error " . $e ;
-              }
-          }
-          return $row;
-      }
+    //               $liked = $stmt->fetchAll();
+    //               $row["liked"][] = $liked[0][3];
+    //           } catch(Throwable $e) {
+    //             echo "Error " . $e ;
+    //           }
+    //       }
+    //       return $row;
+    //   }
 
       // COMMENT //
 
-      public function getNbComments()
-      {
-          $imagesId = $this->getImagesID();
-          foreach ($imagesId as $imgId) {
-              $stmt = $this->_db->prepare('SELECT * FROM comment WHERE imageId = :imageId');
-              $stmt->bindParam(':imageId', $imgId[0]);
-              $stmt->execute();
-              $nbComment = 0;
+    //   public function getNbComments()
+    //   {
+    //       $imagesId = $this->getImagesID();
+    //       foreach ($imagesId as $imgId) {
+    //           $stmt = $this->_db->prepare('SELECT * FROM comment WHERE imageId = :imageId');
+    //           $stmt->bindParam(':imageId', $imgId[0]);
+    //           $stmt->execute();
+    //           $nbComment = 0;
 
-              while ($stmt->fetch()) {
-                  $nbComment++;
-              }
-              $rows[] = $nbComment;
-          }
+    //           while ($stmt->fetch()) {
+    //               $nbComment++;
+    //           }
+    //           $rows[] = $nbComment;
+    //       }
 
-          return $rows;
-      }
+    //       return $rows;
+    //   }
   }

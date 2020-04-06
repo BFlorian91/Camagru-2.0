@@ -121,7 +121,7 @@
                     $datas['authorsImages'][] = $imageDatas[0][5];
                     $datas['numberOfImages'] = $imageDatas[1];
 
-                    // COMMENTS REQUEST
+                    // COMMENTS DATAS REQUEST
                     $commentDatas = $this->getComments($imgId[0]);
                     $datas['comments'][] = $commentDatas;
 
@@ -132,8 +132,9 @@
                     if ($this->userIsConnected) {
                         $datas['likesStatus'][] = $this->getLikedStatus($imgId[0]);
                         $datas['userIsConnected'] = 1;
+                    } else {
+                        $datas['userIsConnected'] = 0;
                     }
-                    $datas['userIsConnected'] = 0;
                 }
 
                 $this->responseJson('success', 'request is done', $datas);

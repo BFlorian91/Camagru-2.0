@@ -38,25 +38,25 @@ class ControllerGallery extends Controller
          }
     }
 
-    public function getLikeStatus()
-    {
-        $action = new ModelGallery();
+    // public function getLikeStatus()
+    // {
+    //     $action = new ModelGallery();
 
-        $datas = $action->getLikeStatus();
-        echo json_encode($datas);
+    //     $datas = $action->getLikeStatus();
+    //     echo json_encode($datas);
 
-        return true;
-    }
+    //     return true;
+    // }
 
-    public function getNbComments()
-    {
-        $action = new ModelGallery();
+    // public function getNbComments()
+    // {
+    //     $action = new ModelGallery();
 
-        $datas = $action->getNbComments();
-        echo json_encode($datas);
+    //     $datas = $action->getNbComments();
+    //     echo json_encode($datas);
 
-        return true;
-    }
+    //     return true;
+    // }
 
     public function getDatas()
     {
