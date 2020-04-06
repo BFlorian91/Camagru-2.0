@@ -26,45 +26,23 @@ class ControllerGallery extends Controller
         $view->build_page();
     }
 
-    public function commentsImg($imageId)
+    public function middlewareImages()
     {
-        die("hello world");
-        die($imageId);
+        $action = new Images();
+        $requestType = htmlspecialchars(filter_input(INPUT_GET, "req"));
+        $imgId = htmlspecialchars(filter_input(INPUT_GET, "imgId"));
 
-        $action = new ModelComments();
-        if (isset($imageId) && $imageId != "") {
-            $datas = $action->fetchCommentImage($imageId);
-            echo json_encode($datas);
-         }
-    }
+        if ($requestType == 'get') {
+            $action->get();
 
-    // public function getLikeStatus()
-    // {
-    //     $action = new ModelGallery();
+            return true;
+        } else if ($requestType == 'post') {
+            var_dump("Hello World");
+            // $comment = filter_input(INPUT_POST, "comment");
+            // $action->post(filter_input(INPUT_GET, "imgId"), $comment);
 
-    //     $datas = $action->getLikeStatus();
-    //     echo json_encode($datas);
-
-    //     return true;
-    // }
-
-    // public function getNbComments()
-    // {
-    //     $action = new ModelGallery();
-
-    //     $datas = $action->getNbComments();
-    //     echo json_encode($datas);
-
-    //     return true;
-    // }
-
-    public function getDatas()
-    {
-        $action = new GetDatas();
-     
-        $action->datasArchitecture();
-
-        return true;
+            return true;
+        }
     }
 
     public function userGallery()

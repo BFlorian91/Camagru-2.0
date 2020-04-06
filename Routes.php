@@ -55,16 +55,8 @@
 
     // // ----- API ----- //
 
-    Route::set('getLikeStatus', function() {
-      ControllerGallery::getLikeStatus();
-    });
-
-    Route::set('getNbComments', function() {
-        ControllerGallery::getNbComments();
-    });
-
-    Route::set('datas_camagru', function() {
-        ControllerGallery::getDatas();
+    Route::set('api_images', function() {
+        ControllerGallery::middlewareImages();
     });
 
     Route::set('api_comments', function() {

@@ -11,7 +11,6 @@ class ModelComments extends Model
 
     public function fetchCommentImage($imageId)
     {
-        // var_dump($imageId);
         try {
             $stmt = $this->_db->prepare('SELECT id, img, imgDate FROM gallery WHERE id LIKE :imgId');
             $stmt->bindParam(":imgId", $imageId);

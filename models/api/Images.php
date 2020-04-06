@@ -1,6 +1,6 @@
 <?php
 
-    class GetDatas extends Model
+    class Images extends Model
     {
         private $_db;
 
@@ -34,21 +34,21 @@
             return $datas;
         }
 
-        public function getUsername($userId)
-        {
-            try {
-                $stmt = $this->_db->prepare('SELECT * FROM users WHERE id LIKE :userId');
-                $stmt->bindParam(":userId", $userId);
-                $stmt->execute();
+        // public function getUsername($userId)
+        // {
+        //     try {
+        //         $stmt = $this->_db->prepare('SELECT * FROM users WHERE id LIKE :userId');
+        //         $stmt->bindParam(":userId", $userId);
+        //         $stmt->execute();
 
-                while ($rows = $stmt->fetch()) {
-                    $username = $rows[1];
-                }
-                return $username;
-            } catch(Throwable $e) {
-                echo $this->message->error($e);
-            }
-        }
+        //         while ($rows = $stmt->fetch()) {
+        //             $username = $rows[1];
+        //         }
+        //         return $username;
+        //     } catch(Throwable $e) {
+        //         echo $this->message->error($e);
+        //     }
+        // }
 
         public function getComments($imgId)
         {
@@ -105,7 +105,7 @@
             }
         }
 
-        public function datasArchitecture()
+        public function get()
         {
             $imageId = $this->getImagesID();
             $datas = [];

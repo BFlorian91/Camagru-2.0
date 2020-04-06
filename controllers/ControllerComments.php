@@ -9,11 +9,11 @@
             $view->build_page();
         }
 
-        function middlewareComments()
+        public function middlewareComments()
         {
             $action = new Comments();
-            $requestType = filter_input(INPUT_GET, "req");
-            $imgId = filter_input(INPUT_GET, "imgId");
+            $requestType = htmlspecialchars(filter_input(INPUT_GET, "req"));
+            $imgId = htmlspecialchars(filter_input(INPUT_GET, "imgId"));
 
             if ($requestType == 'get') {
                 $option = filter_input(INPUT_GET, "option");
@@ -22,7 +22,6 @@
                 return true;
             } else if ($requestType == 'post') {
                 $comment = filter_input(INPUT_POST, "comment");
-                var_dump($imgId, $comment);
                 $action->post(filter_input(INPUT_GET, "imgId"), $comment);
 
                 return true;
