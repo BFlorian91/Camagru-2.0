@@ -37,7 +37,7 @@ class ControllerGallery extends Controller
 
             return true;
         } else if ($requestType == 'post') {
-            var_dump("Hello World");
+            
             // $comment = filter_input(INPUT_POST, "comment");
             // $action->post(filter_input(INPUT_GET, "imgId"), $comment);
 
